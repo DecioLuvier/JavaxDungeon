@@ -1,6 +1,6 @@
 # Explicação da estrutura do código
 
-![ezgif-5cb7ee942d42c6](https://github.com/user-attachments/assets/fa63b7b0-8849-4b00-b0ce-e3d92a57267a)
+![ezgif-552ce6da349cb2](https://github.com/user-attachments/assets/99d1185c-15d9-4241-8f60-7087c62589fa)
 
 ## Game/Assets
 
