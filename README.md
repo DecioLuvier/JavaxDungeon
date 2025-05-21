@@ -1,3 +1,5 @@
+# Explicação da estrutura do código
+
 ## Game/Assets
 
 ### Ator
@@ -10,7 +12,7 @@
   - Ideal para textos.
 
 ### Character (extends Ator)
-  - `int row, col`: Coordenadas na grade para movimentação baseada em tiles.
+  - `int row, col`
 - **Sobre**:
   - Todo `Ator` com `(x, y)` restrito ao tabuleiro é chamado de personagem, ou seja, a movimentação é dada pelas `row` e `col`.
   - Ideal para o jogador;
@@ -33,7 +35,7 @@
   - Dispara listeners para eventos (ex.: teclas pressionadas, eventos baseados em tempo).
 
 ### Surface (extends JPanel)
-  - `List<Actor> actors`: Lista de atores a serem renderizados.
+  - `List<Actor> actors`
 - **Sobre**:
   - Desenha todos os atores de um nível específico usando as funções de `Graphics` do `JPanel`.
   - Responsável pela renderização gráfica do jogo.
