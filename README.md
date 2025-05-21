@@ -23,7 +23,7 @@
 - **Sobre**:
   - Cria e gerencia prefabs de atores.
   - Fornece funções utilitárias para interações entre atores (ex.: encontrar outra classe de personagem no mesmo nível).
-  - Dispara listeners para characters (ex.: teclas pressionadas, eventos baseados em tempo).
+  - Dispara listeners para personagens (ex.: teclas pressionadas, eventos baseados em tempo).
 
 ## Game/Engine
 
@@ -32,7 +32,7 @@
   - `Level currentLevel`
 - **Sobre**:
   - Gerencia a renderização do `currentLevel` e a troca de níveis.
-  - Dispara listeners para eventos (ex.: teclas pressionadas, eventos baseados em tempo).
+  - Dispara listeners para levels (ex.: teclas pressionadas, eventos baseados em tempo).
 
 ### Surface (extends JPanel)
   - `List<Actor> actors`
