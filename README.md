@@ -19,7 +19,7 @@
   - Todo `Ator` com `(x, y)` restrito ao tabuleiro é chamado de personagem, ou seja, a movimentação é dada pelas `row` e `col`.
   - Ideal para o jogador;
 
-### Nível
+### Level
   - `Manager manager`
   - `List<Actor> actors`
 - **Sobre**:
