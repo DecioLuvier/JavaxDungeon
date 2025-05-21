@@ -4,7 +4,7 @@
 
 ## Game/Assets
 
-### Ator
+### Actor
   - `String imagePath`
   - `int depth`
   - `int x, y`
