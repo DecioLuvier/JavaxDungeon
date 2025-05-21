@@ -1,5 +1,7 @@
 # Explicação da estrutura do código
 
+![ezgif-5cb7ee942d42c6](https://github.com/user-attachments/assets/fa63b7b0-8849-4b00-b0ce-e3d92a57267a)
+
 ## Game/Assets
 
 ### Ator
