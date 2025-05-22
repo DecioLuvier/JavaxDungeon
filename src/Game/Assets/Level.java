@@ -3,6 +3,7 @@ package game.assets;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import game.engine.Manager;
 
@@ -25,19 +26,12 @@ public class Level {
     }
 
     public <T extends Actor> List<T> getActorsByClass(Class<T> cls) {
-        List<T> result = new ArrayList<>();
-        for (Actor actor : actors)
-            if (cls.isInstance(actor))
-                result.add(cls.cast(actor));
-        return result;
+        return actors.stream().filter(cls::isInstance).map(cls::cast).collect(Collectors.toList());
     }
 
     public <T extends Character> List<T> getActorsByClass(Class<T> cls, int row, int col) {
-        List<T> filtered = new ArrayList<>();
-        for (T actor : getActorsByClass(cls))
-            if (actor.row == row && actor.col == col)
-                filtered.add(actor);
-        return filtered;
+        return getActorsByClass(cls).stream().filter(actor -> actor.row == row && actor.col == col)
+                .collect(Collectors.toList());
     }
 
     public void onEnter() {
