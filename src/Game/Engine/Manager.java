@@ -1,4 +1,4 @@
-package Game.Engine;
+package game.engine;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +8,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import Game.Assets.Actor;
-import Game.Assets.Level;
-import Game.Prefabs.Levels.Level_01;
+import game.assets.Actor;
+import game.assets.Level;
+import game.prefabs.levels.Level_01;
 
 public class Manager {
     Level currentLevel = new Level_01(this);

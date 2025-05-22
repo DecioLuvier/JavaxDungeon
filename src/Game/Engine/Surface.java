@@ -1,6 +1,4 @@
-package Game.Engine;
-
-import Game.Assets.Actor;
+package game.engine;
 
 import java.awt.Graphics;
 
@@ -11,6 +9,8 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import game.assets.Actor;
 
 public class Surface extends JPanel {
     private List<Actor> actors;

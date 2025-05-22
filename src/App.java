@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-import Game.Engine.Manager;
+import game.engine.Manager;
 
 class App {
     public static void main(String[] args) {

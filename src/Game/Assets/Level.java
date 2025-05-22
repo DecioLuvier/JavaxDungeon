@@ -1,10 +1,10 @@
-package Game.Assets;
+package game.assets;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.Engine.Manager;
+import game.engine.Manager;
 
 public class Level {
     Manager manager;

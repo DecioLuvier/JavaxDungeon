@@ -1,15 +1,14 @@
-package Game.Prefabs.Levels;
+package game.prefabs.levels;
 
-import Game.Assets.Actor;
-import Game.Assets.Level;
-import Game.Engine.Manager;
-
-import Game.Prefabs.Characters.Player;
-import Game.Prefabs.Characters.Ground;
-import Game.Prefabs.Characters.Wall;
+import game.assets.Actor;
+import game.assets.Level;
+import game.engine.Manager;
+import game.prefabs.characters.Ground;
+import game.prefabs.characters.Player;
+import game.prefabs.characters.Wall;
 
 public class Level_01 extends Level {
-    private static String SPRITE_PATH = "src/game/assets/sprites/bg.png";
+    private static String SPRITE_PATH = "src/game/prefabs/sprites/bg.png";
     private static int SPRITE_DEPTH = 0;
 
     public Level_01(Manager manager) {

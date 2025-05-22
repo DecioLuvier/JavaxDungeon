@@ -1,12 +1,12 @@
-package Game.Prefabs.Characters;
+package game.prefabs.characters;
 
 import java.awt.event.KeyEvent;
 
-import Game.Assets.Character;
-import Game.Assets.Level;
+import game.assets.Character;
+import game.assets.Level;
 
 public class Player extends Character {
-    private static String SPRITE_PATH = "src/game/assets/sprites/player.png";
+    private static String SPRITE_PATH = "src/game/prefabs/sprites/player.png";
     private static int SPRITE_DEPTH = 2;
 
     public Player(int row, int col) {

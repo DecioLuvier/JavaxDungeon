@@ -1,4 +1,4 @@
-package Game.Assets;
+package game.assets;
 
 public class Actor {
     public String imagePath;

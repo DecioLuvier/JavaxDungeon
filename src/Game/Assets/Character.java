@@ -1,4 +1,4 @@
-package Game.Assets;
+package game.assets;
 
 import java.awt.event.KeyEvent;
 
