@@ -16,7 +16,7 @@ public class Manager {
     Level currentLevel = new Level_01(this);
 
     public Manager(JFrame frame) {
-        Surface surface = new Surface(frame);
+        Camera camera = new Camera(frame);
         currentLevel.onEnter();
 
         frame.addKeyListener(new KeyAdapter() {
@@ -27,7 +27,7 @@ public class Manager {
 
         Timer timer = new Timer(1000 / 60, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                surface.draw(currentLevel.getActorsByClass(Actor.class));
+                camera.draw(currentLevel.getActorsByClass(Actor.class));
             }
         });
 

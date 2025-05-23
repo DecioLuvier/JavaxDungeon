@@ -12,10 +12,10 @@ import javax.swing.JPanel;
 
 import game.assets.Actor;
 
-public class Surface extends JPanel {
+public class Camera extends JPanel {
     private List<Actor> actors;
 
-    public Surface(JFrame frame) {
+    public Camera(JFrame frame) {
         actors = new ArrayList<>();
         setSize(frame.getWidth(), frame.getHeight());
         frame.add(this);
