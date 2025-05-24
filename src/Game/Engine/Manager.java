@@ -8,12 +8,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import game.assets.Actor;
-import game.assets.Level;
+import game.engine.actors.VisualActor;
 import game.prefabs.levels.Level_01;
 
 public class Manager {
-    Level currentLevel = new Level_01(this);
+    Level currentLevel = new Level_01();
 
     public Manager(JFrame frame) {
         Camera camera = new Camera(frame);
@@ -27,16 +26,11 @@ public class Manager {
 
         Timer timer = new Timer(1000 / 60, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                camera.draw(currentLevel.getActorsByClass(Actor.class));
+                currentLevel.onTick();
+                camera.draw(currentLevel.getActors(VisualActor.class));
             }
         });
 
         timer.start();
-    }
-
-    public void changeLevel(Level newLevel) {
-        currentLevel.onExit();
-        currentLevel = newLevel;
-        currentLevel.onEnter();
     }
 }

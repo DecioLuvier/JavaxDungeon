@@ -1,22 +1,14 @@
 package game.prefabs.levels;
 
-import game.assets.Actor;
-import game.assets.Level;
-import game.engine.Manager;
+import game.engine.Level;
+import game.prefabs.characters.Background;
 import game.prefabs.characters.Ground;
 import game.prefabs.characters.Player;
 import game.prefabs.characters.Wall;
 
 public class Level_01 extends Level {
-    private static String SPRITE_PATH = "src/game/prefabs/sprites/bg.png";
-    private static int SPRITE_DEPTH = 0;
-
-    public Level_01(Manager manager) {
-        super(manager);
-    }
-
     public void onEnter() {
-        spawn(new Actor(SPRITE_PATH, SPRITE_DEPTH, 0, 0));
+        spawn(new Background(0, 0));
         spawn(new Wall(0, 0));
         spawn(new Wall(0, 1));
         spawn(new Wall(0, 2));
