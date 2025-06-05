@@ -1,45 +1,41 @@
 package game.engine;
 
-import javax.swing.ImageIcon;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Sprite {
-    private String imagePath;
-    private int renderOrder;
-    private boolean visible;
-    private boolean cameraRelative;
+    private BufferedImage spriteSheet;
+    private List<BufferedImage> frames;
+    private int frameDelay;
 
-    public Sprite(String imagePath, int renderOrder) {
-        this.imagePath = imagePath;
-        this.renderOrder = renderOrder;
-        this.cameraRelative = true;
-        this.visible = true;
+    public Sprite(String imagePath, int spriteCount, int frameDelay) {
+        this.frames = new ArrayList<>();
+        this.frameDelay = frameDelay;
+
+        try {
+            this.spriteSheet = ImageIO.read(new File(imagePath));
+            int spriteSheetWidth = this.spriteSheet.getWidth() / spriteCount;
+            int spriteSheetHeight = this.spriteSheet.getHeight();
+            for (int col = 0; col < spriteCount; col++)
+                this.frames.add(spriteSheet.getSubimage(col * spriteSheetWidth, 0, spriteSheetWidth, spriteSheetHeight));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Sprite(String imagePath, int renderOrder, boolean cameraRelative, boolean visible) {
-        this.imagePath = imagePath;
-        this.renderOrder = renderOrder;
-        this.cameraRelative = cameraRelative;
-        this.visible = visible;
+    public List<BufferedImage> getFrames() {
+        return this.frames;
     }
 
-    public int getRenderOrder() {
-        return this.renderOrder;
+    public BufferedImage getFrame(int index) {
+        return this.frames.get(index);
     }
 
-    public Image getImage() {
-        return new ImageIcon(this.imagePath).getImage();
-    }
-
-    public boolean getVisible() {
-        return this.visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public boolean getCameraRelative() {
-        return this.cameraRelative;
+    public int getFrameDelay() {
+        return this.frameDelay;
     }
 }

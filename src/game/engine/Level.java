@@ -8,14 +8,16 @@ import game.engine.actors.Actor;
 import game.engine.actors.BoardActor;
 
 public class Level {
-    private List<Actor> actors = new ArrayList<>();
+    private Manager manager;
+    private List<Actor> actors;
 
-    public void spawn(Actor character) {
-        actors.add(character);
+    public Level(Manager manager) {
+        this.manager = manager;
+        this.actors = new ArrayList<>();
     }
 
-    public void despawn(Actor character) {
-        actors.remove(character);
+    public Manager getManager() {
+        return this.manager;
     }
 
     public List<Actor> getActors() {
@@ -38,6 +40,16 @@ public class Level {
         return result;
     }
 
+    public void spawn(Actor actor) {
+        actor.onSpawn(this);
+        actors.add(actor);
+    }
+
+    public void despawn(Actor actor) {
+        actor.onDespawn(this);
+        actors.remove(actor);
+    }
+
     public void onEnter() {
     }
 
@@ -45,9 +57,9 @@ public class Level {
         this.actors.clear();
     }
 
-    public void onPressedKey(KeyEvent event) {
+    public void onReleasedKey(KeyEvent event) {
         for (Actor actor : this.actors)
-            actor.onPressedKey(this, event);
+            actor.onReleasedKey(this, event);
     }
 
     public void onTick() {

@@ -1,16 +1,27 @@
 package game.engine.actors;
 
-import game.engine.Sprite;
+import game.engine.Level;
+import game.engine.Animation;
 
 public class VisualActor extends Actor {
-    private Sprite sprite;
+    private Animation animation;
+    private int renderOrder;
     private int x;
     private int y;
 
-    public VisualActor(Sprite sprite, int x, int y) {
-        this.sprite = sprite;
+    public VisualActor(Animation animation, int renderOrder, int x, int y) {
+        this.animation = animation;
+        this.renderOrder = renderOrder;
         this.x = x;
         this.y = y;
+    }
+
+    public Animation getAnimation() {
+        return this.animation;
+    }
+
+    public int getRenderOrder() {
+        return this.renderOrder;
     }
 
     public int getX() {
@@ -26,12 +37,8 @@ public class VisualActor extends Actor {
         this.y = y;
     }
 
-    public Sprite getSprite() {
-        return this.sprite;
+    @Override
+    public void onTick(Level level) {
+        this.animation.onTick();
     }
-
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
 }
