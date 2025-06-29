@@ -2,11 +2,11 @@ package game.levels;
 
 import engine.Manager;
 import game.BoardLevel;
-import game.actors.floor.Floor;
-import game.actors.gui.background.Background;
-import game.actors.lizard.Lizard;
-import game.actors.player.Player;
-import game.actors.wall.Wall;
+import game.actors.characters.lizard.Lizard;
+import game.actors.characters.player.Player;
+import game.actors.world.floor.Floor;
+import game.actors.world.wall.Wall;
+import game.gui.background.Background;
 
 public class Level_01 extends BoardLevel {
     private static int gridSize = 64;

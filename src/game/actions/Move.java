@@ -5,8 +5,8 @@ import java.util.List;
 import game.Action;
 import game.BoardActor;
 import game.BoardLevel;
-import game.actors.floor.Floor;
-import game.actors.wall.Wall;
+import game.actors.world.floor.Floor;
+import game.actors.world.wall.Wall;
 import engine.graphics.SpriteSheet;
 
 public class Move extends Action {
