@@ -30,6 +30,6 @@ public abstract class Action {
 	}
 
 	public void onEnd(BoardLevel boardLevel, BoardActor boardActor) {
-		boardActor.endAction();
+		boardActor.setAction(null);
 	}
 }

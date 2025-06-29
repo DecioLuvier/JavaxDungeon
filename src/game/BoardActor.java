@@ -7,26 +7,25 @@ import engine.graphics.Animation;
 public class BoardActor extends VisualActor {
     private Action action;
     private int actionTimer;
+    private States states;
 
-    public BoardActor(BoardLevel boardLevel, Animation animation, int row, int col) {
+    public BoardActor(BoardLevel boardLevel, Animation animation, int row, int col, States states) {
         super(animation);
+        this.states = states;
         boardLevel.move(this, row, col);
     }
 
-    public void endAction() {
-        this.action = null;
-        this.actionTimer = 0;
+    public States getStates() {
+        return this.states;
+    }
+
+    public Action getAction() {
+        return this.action;
     }
 
     public void setAction(Action action) {
         this.action = action;
         this.actionTimer = 0;
-    }
-
-    public boolean hasAction() {
-        if (this.action == null)
-            return false;
-        return true;
     }
 
     public void onMove(BoardLevel boardLevel) {
@@ -37,10 +36,16 @@ public class BoardActor extends VisualActor {
 
     }
 
+    public void onHasNoActions(BoardLevel boardLevel) {
+
+    }
+
     @Override
     public void onTick(Level level) {
         BoardLevel boardLevel = (BoardLevel) level;
-        if (this.hasAction()) {
+        if (this.getAction() == null)
+            onHasNoActions(boardLevel);
+        else {
             if (action.getStartFrames() == actionTimer)
                 action.onStart(boardLevel, this);
             if (action.getActionFrames() == actionTimer)

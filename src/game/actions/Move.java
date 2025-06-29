@@ -6,6 +6,7 @@ import game.Action;
 import game.BoardActor;
 import game.BoardLevel;
 import game.actors.floor.Floor;
+import game.actors.wall.Wall;
 import engine.graphics.SpriteSheet;
 
 public class Move extends Action {
@@ -14,8 +15,7 @@ public class Move extends Action {
     private SpriteSheet idle;
     private SpriteSheet walk;
 
-    public Move(int startFrames, int actionFrames, int endFrames, int row, int col, SpriteSheet idle,
-            SpriteSheet walk) {
+    public Move(int startFrames, int actionFrames, int endFrames, int row, int col, SpriteSheet idle, SpriteSheet walk) {
         super(startFrames, actionFrames, endFrames);
         this.row = row;
         this.col = col;
@@ -23,8 +23,22 @@ public class Move extends Action {
         this.walk = walk;
     }
 
+    public static boolean canMoveTo(BoardLevel boardLevel, BoardActor boardActor, int row, int col) {
+        if (!boardActor.getStates().isMovable())
+            return false;
+
+        List<BoardActor> actors = boardLevel.getActors(row, col);
+        boolean hasFloor = boardLevel.hasActorType(actors, Floor.class);
+        boolean hasWall = boardLevel.hasActorType(actors, Wall.class);
+
+        return (boardActor.getStates().isClippable() || !hasWall) && (hasFloor || boardActor.getStates().isFlyable());
+    }
+
     @Override
     public void onAction(BoardLevel boardLevel, BoardActor boardActor) {
+        if (!canMoveTo(boardLevel, boardActor, row, col))
+            return;
+
         boardActor.getAnimation().setSpriteSheet(walk);
 
         if (boardLevel.getCol(boardActor) - col > 0)
@@ -32,11 +46,7 @@ public class Move extends Action {
         else if (boardLevel.getCol(boardActor) - col < 0)
             boardActor.getAnimation().setHorizontalOrientation(false);
 
-        List<BoardActor> actors = boardLevel.getActors(row, col);
-        boolean hasFloor = boardLevel.hasActorType(actors, Floor.class);
-
-        if (hasFloor)
-            boardLevel.move(boardActor, row, col);
+        boardLevel.move(boardActor, row, col);
     }
 
     @Override

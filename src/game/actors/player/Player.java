@@ -7,6 +7,7 @@ import engine.graphics.Animation;
 import engine.graphics.SpriteSheet;
 import game.BoardActor;
 import game.BoardLevel;
+import game.States;
 import game.actions.Move;
 
 public class Player extends BoardActor {
@@ -14,7 +15,7 @@ public class Player extends BoardActor {
 	private static SpriteSheet walk = new SpriteSheet("src/game/actors/player/Walk.png", 3, 3, 15, 20);
 
 	public Player(BoardLevel boardLevel, int row, int col) {
-		super(boardLevel, new Animation(idle, 3, 6, 6), row, col);
+		super(boardLevel, new Animation(idle, 3, 6, 6), row, col, new States(true, false, false));
 	}
 
 	@Override
