@@ -12,7 +12,7 @@ import game.actions.Move;
 
 public class Player extends BoardActor {
 	private static SpriteSheet idle = new SpriteSheet("src/game/actors/characters/player/Idle.png", 4, 4, 15, 15);
-	private static SpriteSheet walk = new SpriteSheet("src/game/actors/characters/player/Walk.png", 3, 3, 15, 20);
+	private static SpriteSheet walk = new SpriteSheet("src/game/actors/characters/player/Walk.png", 3, 3, 15, 17);
 
 	public Player(BoardLevel boardLevel, int row, int col) {
 		super(boardLevel, new Animation(idle, 3, 6, 6), row, col, new States(true, false, false));
@@ -31,6 +31,6 @@ public class Player extends BoardActor {
 			case KeyEvent.VK_D -> newCol++;
 		}
 
-		this.setAction(new Move(0, 5, 10, newRow, newCol, idle, walk));
+		this.setAction(new Move(0, 5, 10, idle, walk, newRow, newCol));
 	}
 }

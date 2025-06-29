@@ -1,32 +1,35 @@
 package game;
 
 public abstract class Action {
-	private int startFrames;
-	private int actionFrames;
-	private int endFrames;
+	private int actionDelay;
+	private int postActionDelay;
+	private int endDelay;
 
-	public Action(int startFrames, int actionFrames, int endFrames) {
-		this.startFrames = startFrames;
-		this.actionFrames = startFrames + actionFrames;
-		this.endFrames = startFrames + actionFrames + endFrames;
+	public Action(int actionDelay, int postActionDelay, int endDelay) {
+		this.actionDelay = actionDelay + 1;
+		this.postActionDelay = this.actionDelay + postActionDelay + 1;
+		this.endDelay = this.actionDelay + this.postActionDelay + endDelay + 1;
 	}
 
-	public int getStartFrames() {
-		return this.startFrames;
+	public int getActionDelay() {
+		return this.actionDelay;
 	}
 
-	public int getActionFrames() {
-		return this.actionFrames;
+	public int getPostActionDelay() {
+		return this.postActionDelay;
 	}
 
-	public int getEndFrames() {
-		return this.endFrames;
+	public int getEndDelay() {
+		return this.endDelay;
 	}
 
 	public void onStart(BoardLevel boardLevel, BoardActor boardActor) {
 	}
 
 	public void onAction(BoardLevel boardLevel, BoardActor boardActor) {
+	}
+
+	public void onPostAction(BoardLevel boardLevel, BoardActor boardActor) {
 	}
 
 	public void onEnd(BoardLevel boardLevel, BoardActor boardActor) {

@@ -15,12 +15,12 @@ public class Move extends Action {
     private SpriteSheet idle;
     private SpriteSheet walk;
 
-    public Move(int startFrames, int actionFrames, int endFrames, int row, int col, SpriteSheet idle, SpriteSheet walk) {
-        super(startFrames, actionFrames, endFrames);
-        this.row = row;
-        this.col = col;
+    public Move(int actionDelay, int postActionDelay, int endDelay, SpriteSheet idle, SpriteSheet walk, int row, int col) {
+        super(actionDelay, postActionDelay, endDelay);
         this.idle = idle;
         this.walk = walk;
+        this.row = row;
+        this.col = col;
     }
 
     public static boolean canMoveTo(BoardLevel boardLevel, BoardActor boardActor, int row, int col) {
@@ -28,8 +28,8 @@ public class Move extends Action {
             return false;
 
         List<BoardActor> actors = boardLevel.getActors(row, col);
-        boolean hasFloor = boardLevel.hasActorType(actors, Floor.class);
-        boolean hasWall = boardLevel.hasActorType(actors, Wall.class);
+        boolean hasFloor = boardLevel.getActor(actors, Floor.class) != null;
+        boolean hasWall = boardLevel.getActor(actors, Wall.class) != null;
 
         return (boardActor.getStates().isClippable() || !hasWall) && (hasFloor || boardActor.getStates().isFlyable());
     }
@@ -41,17 +41,22 @@ public class Move extends Action {
 
         boardActor.getAnimation().setSpriteSheet(walk);
 
-        if (boardLevel.getCol(boardActor) - col > 0)
+        if (boardLevel.getCol(boardActor) - col < 0)
             boardActor.getAnimation().setHorizontalOrientation(true);
-        else if (boardLevel.getCol(boardActor) - col < 0)
+        else if (boardLevel.getCol(boardActor) - col > 0)
             boardActor.getAnimation().setHorizontalOrientation(false);
 
         boardLevel.move(boardActor, row, col);
     }
 
     @Override
-    public void onEnd(BoardLevel boardLevel, BoardActor boardActor) {
+    public void onPostAction(BoardLevel boardLevel, BoardActor boardActor) {
         boardActor.getAnimation().setSpriteSheet(idle);
+        super.onPostAction(boardLevel, boardActor);
+    }
+
+    @Override
+    public void onEnd(BoardLevel boardLevel, BoardActor boardActor) {
         super.onEnd(boardLevel, boardActor);
     }
 }

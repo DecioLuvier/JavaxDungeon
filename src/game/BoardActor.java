@@ -18,13 +18,15 @@ public class BoardActor extends VisualActor {
         return this.states;
     }
 
-    public Action getAction() {
-        return this.action;
-    }
-
     public void setAction(Action action) {
         this.action = action;
         this.actionTimer = 0;
+    }
+
+    public boolean hasAction() {
+        if (this.action == null)
+            return false;
+        return true;
     }
 
     public void onMove(BoardLevel boardLevel) {
@@ -42,14 +44,16 @@ public class BoardActor extends VisualActor {
     @Override
     public void onTick(Level level) {
         BoardLevel boardLevel = (BoardLevel) level;
-        if (this.getAction() == null)
+        if (!this.hasAction())
             onHasNoActions(boardLevel);
         else {
-            if (action.getStartFrames() == actionTimer)
+            if (actionTimer == 0)
                 action.onStart(boardLevel, this);
-            if (action.getActionFrames() == actionTimer)
+            else if (actionTimer == action.getActionDelay())
                 action.onAction(boardLevel, this);
-            if (action.getEndFrames() == actionTimer)
+            else if (actionTimer == action.getPostActionDelay())
+                action.onPostAction(boardLevel, this);
+            else if (actionTimer == action.getEndDelay())
                 action.onEnd(boardLevel, this);
             actionTimer++;
         }

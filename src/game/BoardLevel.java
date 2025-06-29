@@ -15,11 +15,19 @@ public class BoardLevel extends Level {
         this.gridSize = gridSize;
     }
 
-    public <T extends BoardActor> boolean hasActorType(List<BoardActor> actors, Class<T> cls) {
+    public <T extends BoardActor> T getActor(List<BoardActor> actors, Class<T> cls) {
         for (BoardActor actor : actors)
             if (cls.isInstance(actor))
-                return true;
-        return false;
+                return cls.cast(actor);
+        return null;
+    }
+
+    public List<BoardActor> getActorsInRow(int row) {
+        List<BoardActor> result = new ArrayList<>();
+        for (BoardActor boardActor : this.getActors(BoardActor.class))
+            if (this.getRow(boardActor) == row)
+                result.add(boardActor);
+        return result;
     }
 
     public List<BoardActor> getActors(int row, int col) {

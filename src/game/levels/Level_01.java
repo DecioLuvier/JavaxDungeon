@@ -4,6 +4,7 @@ import engine.Manager;
 import game.BoardLevel;
 
 import game.actors.characters.player.Player;
+import game.actors.characters.wizard.Wizard;
 import game.actors.world.floor.Floor;
 import game.actors.world.pikes.Pikes;
 import game.actors.world.wall.Wall;
@@ -28,7 +29,9 @@ public class Level_01 extends BoardLevel {
 
         spawn(new Player(this, 6, 6));
 
-        spawn(new Pikes(this, 8, 6));
+        spawn(new Wizard(this, 9, 6));
+
+        spawn(new Pikes(this, 7, 7));
 
     }
 }

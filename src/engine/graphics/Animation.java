@@ -43,11 +43,11 @@ public class Animation {
         return this.spriteSheet;
     }
 
-    public void setHorizontalOrientation(boolean faceLeft) {
-        if (faceLeft)
-            this.xScale = -Math.abs(this.xScale);
-        else
+    public void setHorizontalOrientation(boolean faceRight) {
+        if (faceRight)
             this.xScale = Math.abs(this.xScale);
+        else
+            this.xScale = -Math.abs(this.xScale);
     }
 
     public void setVerticalOrientation(boolean faceUp) {

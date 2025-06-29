@@ -11,9 +11,13 @@ import game.BoardLevel;
 public class RandomMovement extends Action {
 	private SpriteSheet idle;
 	private SpriteSheet walk;
+	private int postActionDelay;
+	private int endDelay;
 
-	public RandomMovement(int startFrames, int actionFrames, int endFrames, SpriteSheet idle, SpriteSheet walk) {
-		super(startFrames, actionFrames, endFrames);
+	public RandomMovement(int postActionDelay, int endDelay, SpriteSheet idle, SpriteSheet walk) {
+		super(0, 0, 0);
+		this.endDelay = endDelay;
+		this.postActionDelay = postActionDelay;
 		this.idle = idle;
 		this.walk = walk;
 	}
@@ -24,6 +28,7 @@ public class RandomMovement extends Action {
 		int currentCol = boardLevel.getCol(boardActor);
 
 		List<int[]> validPositions = new ArrayList<>();
+
 		int[][] directions = { { currentRow - 1, currentCol }, { currentRow + 1, currentCol }, { currentRow, currentCol - 1 }, { currentRow, currentCol + 1 } };
 
 		for (int[] pos : directions)
@@ -32,13 +37,7 @@ public class RandomMovement extends Action {
 
 		if (!validPositions.isEmpty()) {
 			int[] chosenPosition = validPositions.get(boardLevel.getManager().getRandom().nextInt(validPositions.size()));
-			boardActor.setAction(new Move(0, 20, 10, chosenPosition[0], chosenPosition[1], idle, walk));
+			boardActor.setAction(new Move(0, postActionDelay, endDelay, idle, walk, chosenPosition[0], chosenPosition[1]));
 		}
-	}
-
-	@Override
-	public void onEnd(BoardLevel boardLevel, BoardActor boardActor) {
-		boardActor.getAnimation().setSpriteSheet(idle);
-		super.onEnd(boardLevel, boardActor);
 	}
 }
