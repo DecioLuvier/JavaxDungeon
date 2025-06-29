@@ -10,9 +10,8 @@ public class BoardActor extends VisualActor {
     private States states;
 
     public BoardActor(BoardLevel boardLevel, Animation animation, int row, int col, States states) {
-        super(animation);
+        super(animation, col * boardLevel.getGridSize(), row * boardLevel.getGridSize());
         this.states = states;
-        boardLevel.move(this, row, col);
     }
 
     public States getStates() {

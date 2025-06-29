@@ -22,20 +22,16 @@ public class RandomMovement extends Action {
 	public void onAction(BoardLevel boardLevel, BoardActor boardActor) {
 		int currentRow = boardLevel.getRow(boardActor);
 		int currentCol = boardLevel.getCol(boardActor);
-		List<int[]> validPositions = new ArrayList<>();
 
+		List<int[]> validPositions = new ArrayList<>();
 		int[][] directions = { { currentRow - 1, currentCol }, { currentRow + 1, currentCol }, { currentRow, currentCol - 1 }, { currentRow, currentCol + 1 } };
 
-		for (int[] pos : directions) {
-			int row = pos[0];
-			int col = pos[1];
-			if (Move.canMoveTo(boardLevel, boardActor, row, col))
+		for (int[] pos : directions)
+			if (Move.canMoveTo(boardLevel, boardActor, pos[0], pos[1]))
 				validPositions.add(pos);
-		}
 
 		if (!validPositions.isEmpty()) {
-			int movement = boardLevel.getManager().getRandom().nextInt(validPositions.size());
-			int[] chosenPosition = validPositions.get(movement);
+			int[] chosenPosition = validPositions.get(boardLevel.getManager().getRandom().nextInt(validPositions.size()));
 			boardActor.setAction(new Move(0, 20, 10, chosenPosition[0], chosenPosition[1], idle, walk));
 		}
 	}

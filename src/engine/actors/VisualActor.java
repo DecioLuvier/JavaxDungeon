@@ -8,14 +8,10 @@ public class VisualActor extends Actor {
     private int x;
     private int y;
 
-    public VisualActor(Level level, Animation animation, int x, int y) {
+    public VisualActor(Animation animation, int x, int y) {
         this.animation = animation;
         this.x = x;
         this.y = y;
-    }
-
-    public VisualActor(Animation animation) {
-        this.animation = animation;
     }
 
     public Animation getAnimation() {

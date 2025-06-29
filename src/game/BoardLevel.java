@@ -30,6 +30,10 @@ public class BoardLevel extends Level {
         return result;
     }
 
+    public int getGridSize() {
+        return this.gridSize;
+    }
+
     public int getRow(BoardActor boardActor) {
         return boardActor.getY() / gridSize;
     }
