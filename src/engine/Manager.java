@@ -15,28 +15,26 @@ import game.levels.Level_01;
 public class Manager {
     private Random random;
     private Camera camera;
-    private Level_01 level_01;
-    private Level currentLevel;
+    private Level level;
 
     public Manager(JFrame frame) {
         this.random = new Random(12);
         this.camera = new Camera();
-        this.level_01 = new Level_01(this);
-        this.currentLevel = this.level_01;
-        this.currentLevel.onEnter();
+        this.level = new Level_01(this);
+        this.level.onEnter();
 
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                currentLevel.onReleasedKey(e);
+                level.onReleasedKey(e);
             }
         });
 
         new Timer(1000 / 60, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentLevel.onTick();
-                camera.draw(currentLevel.getActors(VisualActor.class));
+                level.onTick();
+                camera.draw(level.getActors(VisualActor.class));
             }
         }).start();
 
@@ -45,5 +43,11 @@ public class Manager {
 
     public Random getRandom() {
         return this.random;
+    }
+
+    public void setCurrentLevel(Level level) {
+        this.level.onExit();
+        this.level = level;
+        this.level.onEnter();
     }
 }
