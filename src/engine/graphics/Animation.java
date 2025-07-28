@@ -2,23 +2,17 @@ package engine.graphics;
 
 public class Animation {
     private SpriteSheet spriteSheet;
-    private int renderOrder;
     private double xScale;
     private double yScale;
     private int frameIndex;
     private int frameCounter;
 
-    public Animation(SpriteSheet spriteSheet, int renderOrder, double xScale, double yScale) {
+    public Animation(SpriteSheet spriteSheet, double xScale, double yScale) {
         this.spriteSheet = spriteSheet;
-        this.renderOrder = renderOrder;
         this.xScale = xScale;
         this.yScale = yScale;
         this.frameIndex = 0;
         this.frameCounter = 0;
-    }
-
-    public int getRenderOrder() {
-        return this.renderOrder;
     }
 
     public int getFrameIndex() {
@@ -31,6 +25,14 @@ public class Animation {
 
     public double getYScale() {
         return this.yScale;
+    }
+
+    public void setXScale(double xScale) {
+        this.xScale = xScale;
+    }
+
+    public void setYScale(double yScale) {
+        this.yScale = yScale;
     }
 
     public void setSpriteSheet(SpriteSheet spriteSheet) {

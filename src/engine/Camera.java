@@ -29,26 +29,28 @@ public class Camera extends JPanel {
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        visualActors.sort(Comparator.comparingInt(actor -> actor.getAnimation().getRenderOrder()));
+        visualActors.sort(Comparator.comparingInt(actor -> actor.getZ()));
 
         for (VisualActor visualActor : visualActors) {
-            Animation animation = visualActor.getAnimation();
-            SpriteSheet sprite = animation.getSpriteSheet();
-            BufferedImage frame = sprite.getFrame(animation.getFrameIndex());
+            if(visualActor.getVisible()){
+                Animation animation = visualActor.getAnimation();
+                SpriteSheet sprite = animation.getSpriteSheet();
+                BufferedImage frame = sprite.getFrame(animation.getFrameIndex());
 
-            int scaledWidth = (int) (frame.getWidth() * animation.getXScale());
-            int scaledHeight = (int) (frame.getHeight() * animation.getYScale());
+                int scaledWidth = (int) (frame.getWidth() * animation.getXScale());
+                int scaledHeight = (int) (frame.getHeight() * animation.getYScale());
 
-            int drawX = visualActor.getX();
-            int drawY = visualActor.getY();
-            if (animation.getXScale() < 0)
-                drawX += Math.abs(scaledWidth);
-            if (animation.getYScale() < 0)
-                drawY += Math.abs(scaledHeight);
-            drawX -= sprite.getOriginX();
-            drawY -= sprite.getOriginY();
+                int drawX = visualActor.getX();
+                int drawY = visualActor.getY();
+                if (animation.getXScale() < 0)
+                    drawX += Math.abs(scaledWidth);
+                if (animation.getYScale() < 0)
+                    drawY += Math.abs(scaledHeight);
+                drawX -= sprite.getOriginX();
+                drawY -= sprite.getOriginY();
 
-            graphics.drawImage(frame, drawX, drawY, scaledWidth, scaledHeight, this);
+                graphics.drawImage(frame, drawX, drawY, scaledWidth, scaledHeight, this);
+            }
         }
     }
 }

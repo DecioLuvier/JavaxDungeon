@@ -32,6 +32,15 @@ public class SpriteSheet {
         }
     }
 
+    public SpriteSheet(BufferedImage image) {
+        this.frames = new ArrayList<>();
+        this.frameDelay = 0;
+        this.originX = 0;
+        this.originY = 0;
+        this.spriteSheet = image;
+        this.frames.add(image);
+    }
+
     public List<BufferedImage> getFrames() {
         return this.frames;
     }
