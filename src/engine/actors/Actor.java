@@ -1,22 +1,23 @@
 package engine.actors;
 
 import java.awt.event.KeyEvent;
-import engine.Room;
-import engine.Surface;
+
+import engine.Manager;
+import engine.surfaces.Surface;
 
 public class Actor {
-    public void onPressedKey(Room room, Surface surface, KeyEvent event) {
+    public void onPressedKey(Manager manager, Surface surface, KeyEvent event) {
     }
 
-    public void onReleasedKey(Room room, Surface surface, KeyEvent event) {
+    public void onReleasedKey(Manager manager, Surface surface, KeyEvent event) {
     }
 
-    public void onTick(Room room, Surface surface) {
+    public void onTick(Manager manager, Surface surface) {
     }
 
-    public void onCreate(Room room, Surface surface) {
+    public void onCreate(Manager manager, Surface surface) {
     }
 
-    public void onDestroy(Room room, Surface surface) {
+    public void onDestroy(Manager manager, Surface surface) {
     }
 }

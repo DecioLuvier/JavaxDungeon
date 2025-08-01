@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-import engine.Room;
-import engine.Surface;
+import engine.Manager;
 import engine.actors.TextActor;
 import engine.actors.VisualActor;
-import engine.graphics.Animation;
-import engine.graphics.SpriteSheet;
+import engine.graphic.Animation;
+import engine.graphic.SpriteSheet;
+import engine.surfaces.Surface;
 import game.pokemon.Pokemon;
 import game.pokemon.Type;
 import game.surfaces.board.Floor;
@@ -50,49 +50,49 @@ public class Battle extends Surface {
     }
 
     @Override
-    public void onCreate(Room room) {
+    public void onCreate(Manager manager) {
         // STATIC GUI
-        create(room, new VisualActor(new Animation(background, 1, 1)), 70, 148, 0);
+        addActor(manager, new VisualActor(new Animation(background, 1, 1)), 70, 148, 0);
 
         // GUI
-        create(room, opponentNameText, 106, 103, 5);
-        create(room, opponentLevelText, 206, 128, 5);
-        create(room, opponentHpText, 163, 160, 5);
+        addActor(manager, opponentNameText, 106, 103, 5);
+        addActor(manager, opponentLevelText, 206, 128, 5);
+        addActor(manager, opponentHpText, 163, 160, 5);
 
-        create(room, mainNameText, 356, 338, 5);
-        create(room, mainLevelText, 456, 363, 5);
-        create(room, mainHpText, 389, 396, 5);
+        addActor(manager, mainNameText, 356, 338, 5);
+        addActor(manager, mainLevelText, 456, 363, 5);
+        addActor(manager, mainHpText, 389, 396, 5);
         
         // 
 
-        setOpponent(room, opponentPokemon);
-        setMain(room, trainer.getPokemon(0));
-        setBench(room, trainer.getPokemon(1));
+        setOpponent(manager, opponentPokemon);
+        setMain(manager, trainer.getPokemon(0));
+        setBench(manager, trainer.getPokemon(1));
 
-        super.onCreate(room);
+        super.onCreate(manager);
     }
 
     @Override
-    public void onPressedKey(Room room, KeyEvent event) {
+    public void onPressedKey(Manager manager, KeyEvent event) {
         Pokemon mainPokemon = trainer.getPokemon(0);
         if(mainPokemon.getCurrentCD() == 0){
             switch (event.getKeyCode()) {
                 case KeyEvent.VK_F: 
                     Move fastMove = mainPokemon.getStats().getFastMove();
-                    attack(room, mainPokemon, opponentPokemon, fastMove, opponentHpText);
+                    attack(manager, mainPokemon, opponentPokemon, fastMove, opponentHpText);
                     break;
                 case KeyEvent.VK_C: 
                     Move chargedMove = mainPokemon.getStats().getChargedMove();
                     if (mainPokemon.getCurrentMP() >= chargedMove.getEnergy()) 
-                        attack(room, mainPokemon, opponentPokemon, chargedMove, opponentHpText);
+                        attack(manager, mainPokemon, opponentPokemon, chargedMove, opponentHpText);
                     break;
             }
         }
-        super.onPressedKey(room, event);
+        super.onPressedKey(manager, event);
     }
 
     @Override
-    public void onTick(Room room) {
+    public void onTick(Manager manager) {
         Pokemon mainPokemon = trainer.getPokemon(0); 
         if(mainPokemon.getCurrentCD() > 0){
             mainPokemon.setCurrentCD(mainPokemon.getCurrentCD() - 1);
@@ -103,22 +103,22 @@ public class Battle extends Surface {
                 Move chargedMove = opponentPokemon.getStats().getChargedMove();
                 Move fastMove = opponentPokemon.getStats().getFastMove();
                 if (opponentPokemon.getCurrentMP() >= chargedMove.getEnergy())
-                    attack(room, opponentPokemon, mainPokemon, chargedMove, mainHpText);
+                    attack(manager, opponentPokemon, mainPokemon, chargedMove, mainHpText);
                 else 
-                    attack(room, opponentPokemon, mainPokemon, fastMove, mainHpText);
+                    attack(manager, opponentPokemon, mainPokemon, fastMove, mainHpText);
             }
         }
-        super.onTick(room);
+        super.onTick(manager);
     }
 
-    public void swapMainWithBench(Room room) {
+    public void swapMainWithBench(Manager manager) {
         trainer.swapPokemon(0, 1);
-        setMain(room, trainer.getPokemon(0));
-        setBench(room, trainer.getPokemon(1));
+        setMain(manager, trainer.getPokemon(0));
+        setBench(manager, trainer.getPokemon(1));
     }
 
-    public void setOpponent(Room room, Pokemon pokemon) {
-        move(room, pokemon, 350, 85, 1);
+    public void setOpponent(Manager manager, Pokemon pokemon) {
+        setActorPosition(pokemon, 350, 85, 1);
         pokemon.getAnimation().setXScale(4);
         pokemon.getAnimation().setYScale(4);
         pokemon.getAnimation().setHorizontalOrientation(true);
@@ -127,8 +127,8 @@ public class Battle extends Surface {
         opponentHpText.setText(pokemon.getCurrentHP() + "/" + pokemon.getHp());
     }
 
-    public void setMain(Room room, Pokemon pokemon) {
-        move(room, pokemon, 90, 220, 1);
+    public void setMain(Manager manager, Pokemon pokemon) {
+        setActorPosition(pokemon, 90, 220, 1);
         pokemon.getAnimation().setXScale(4);
         pokemon.getAnimation().setYScale(4);
         pokemon.getAnimation().setHorizontalOrientation(false);
@@ -139,14 +139,14 @@ public class Battle extends Surface {
         mainChargedMove.setText(pokemon.getStats().getChargedMove().getName());
     }
 
-    public void setBench(Room room, Pokemon pokemon) {
-        move(room, pokemon, 87, 463, 1);
+    public void setBench(Manager manager, Pokemon pokemon) {
+        setActorPosition(pokemon, 87, 463, 1);
         pokemon.getAnimation().setXScale(2);
         pokemon.getAnimation().setYScale(2);
         pokemon.getAnimation().setHorizontalOrientation(false);
     }
 
-    public static void attack(Room room, Pokemon attacker, Pokemon target, Move move, TextActor targetHpText) {
+    public static void attack(Manager manager, Pokemon attacker, Pokemon target, Move move, TextActor targetHpText) {
         int damage = calculateDamage(attacker, target, move);
         int newHP = Math.max(0, target.getCurrentHP() - damage);
         target.setCurrentHP(newHP);
@@ -162,9 +162,9 @@ public class Battle extends Surface {
         attacker.setCurrentCD(move.getCooldown());
     }
 
-    public static void tryCapture(Room room, Trainer trainer, Pokemon target) {
+    public static void tryCapture(Manager manager, Trainer trainer, Pokemon target) {
         double captureChance = calculateCaptureChance(target);        
-        Random random = room.getManager().getRandom();
+        Random random = manager.getRandom();
 
         // End Battle
         if (random.nextDouble() <= captureChance) {

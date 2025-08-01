@@ -1,13 +1,15 @@
 package engine.actors;
 
-import engine.graphics.Animation;
-import engine.graphics.SpriteSheet;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
+
+import engine.graphic.Animation;
+import engine.graphic.SpriteSheet;
+
 import java.awt.FontFormatException;
 
 public class TextActor extends VisualActor {

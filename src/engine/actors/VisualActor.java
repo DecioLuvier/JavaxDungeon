@@ -1,8 +1,8 @@
 package engine.actors;
 
-import engine.Room;
-import engine.Surface;
-import engine.graphics.Animation;
+import engine.Manager;
+import engine.graphic.Animation;
+import engine.surfaces.Surface;
 
 public class VisualActor extends Actor {
     private Animation animation;
@@ -11,21 +11,12 @@ public class VisualActor extends Actor {
     private int y;
     private int z;
 
-
     public VisualActor(Animation animation, int x, int y, int z, boolean visible) {
         this.animation = animation;
         this.visible = visible;
         this.x = x;
         this.y = y;
         this.z = z;
-    }
-
-    public VisualActor(Animation animation, boolean visible) {
-        this.animation = animation;
-        this.visible = visible;
-        this.x = 0;
-        this.y = 0;
-        this.z = 0;
     }
 
     public VisualActor(Animation animation) {
@@ -36,7 +27,6 @@ public class VisualActor extends Actor {
         this.z = 0;
     }
 
-
     public boolean getVisible() {
         return this.visible;
     }
@@ -44,7 +34,6 @@ public class VisualActor extends Actor {
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
-
 
     public Animation getAnimation() {
         return this.animation;
@@ -58,20 +47,20 @@ public class VisualActor extends Actor {
         return this.x;
     }
 
-    public void setX(int x) {
+	public void setX(int x) {
         this.x = x;
-    }
-
-    public int getY() {
-        return this.y;
     }
 
     public void setY(int y) {
         this.y = y;
     }
 
+    public int getY() {
+        return this.y;
+    }
+
     public int getZ() {
-        return z;
+        return this.z;
     }
 
     public void setZ(int z) {
@@ -79,8 +68,8 @@ public class VisualActor extends Actor {
     }
 
     @Override
-    public void onTick(Room room, Surface surface) {
+    public void onTick(Manager manager, Surface surface) {
         this.animation.onTick();
-        super.onTick(room, surface);
+        super.onTick(manager, surface);
     }
 }

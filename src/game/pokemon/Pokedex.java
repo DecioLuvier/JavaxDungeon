@@ -1,6 +1,6 @@
 package game.pokemon;
 
-import engine.graphics.SpriteSheet;
+import engine.graphic.SpriteSheet;
 
 public enum Pokedex {
     VENUSAUR(new SpriteSheet("src/game/pokemon/sprites/3.png", 14, 6, 0, 0), "VENUSAUR", Type.GRASS, Type.POISON, 190, 198, 189, Move.VINE_WHIP, Move.SLUDGE_BOMB, 0, null, 45 ,263),

@@ -2,9 +2,9 @@ package game.pokemon;
 
 import java.util.Random;
 
-import engine.Room;
+import engine.Manager;
 import engine.actors.VisualActor;
-import engine.graphics.Animation;
+import engine.graphic.Animation;
 import game.trainer.Trainer;
 
 public class Pokemon extends VisualActor {
@@ -40,11 +40,11 @@ public class Pokemon extends VisualActor {
 	private int currentMP; // The amount of energy it has to perform charged attacks
 	private int currentCD; // The number of turns it needs to wait to perform an action
 
-    public Pokemon(Room room, Pokedex stats) {
+    public Pokemon(Manager manager, Pokedex stats) {
         super(new Animation(stats.getSpriteSheet(), 1, 1));
         this.stats = stats;
 
-        Random random = room.getManager().getRandom();
+        Random random = manager.getRandom();
         this.ivHp = random.nextInt(16);      
         this.ivAttack = random.nextInt(16);  
         this.ivDefense = random.nextInt(16); 

@@ -1,4 +1,4 @@
-package engine.graphics;
+package engine.graphic;
 
 public class Animation {
     private SpriteSheet spriteSheet;

@@ -1,8 +1,8 @@
 package game.surfaces.board;
 
 import engine.actors.VisualActor;
-import engine.graphics.Animation;
-import engine.graphics.SpriteSheet;
+import engine.graphic.Animation;
+import engine.graphic.SpriteSheet;
 
 public class Floor extends VisualActor {
 	private FloorType floorType;

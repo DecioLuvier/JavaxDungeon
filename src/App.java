@@ -1,18 +1,18 @@
-import javax.swing.*;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
 
 import engine.Manager;
 
 class App {
     public static void main(String[] args) {
         JFrame frame = new JFrame("JavaxDungeon");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(664, 900);
         frame.setResizable(false);
 
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Manager camera = new Manager(12);
+        frame.add(camera, BorderLayout.CENTER);
 
-        new Manager(frame);
-
-        frame.setVisible(true);
+        frame.setVisible(true);     
     }
 }
