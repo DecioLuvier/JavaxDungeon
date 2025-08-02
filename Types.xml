@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types>
+    <type name="Normal" Ghost="0.39" Rock="0.63" Steel="0.63" Fighting="1.6"/>
+    <type name="Fire" Fire="0.63" Water="1.6" Grass="0.63" Ice="0.63" Bug="0.63" Rock="1.6" Dragon="0.63" Steel="0.63" Fairy="0.63"/>
+    <type name="Water" Fire="0.63" Water="0.63" Electric="1.6" Grass="1.6" Ice="0.63" Steel="0.63"/>
+    <type name="Electric" Electric="0.63" Ground="1.6" Flying="0.63" Steel="0.63"/>
+    <type name="Grass" Fire="1.6" Water="0.63" Electric="0.63" Grass="0.63" Poison="1.6" Ground="0.63" Flying="1.6" Bug="1.6" Dragon="0.63"/>
+    <type name="Ice" Fire="1.6" Grass="0.63" Ice="0.63" Fighting="1.6" Rock="1.6" Steel="1.6"/>
+    <type name="Fighting" Flying="1.6" Psychic="1.6" Bug="0.63" Rock="0.63" Dark="0.63" Fairy="1.6"/>
+    <type name="Poison" Grass="0.63" Poison="0.63" Ground="1.6" Bug="0.63" Ghost="0.63" Psychic="1.6" Fairy="0.63"/>
+    <type name="Ground" Water="1.6" Electric="0.39" Grass="1.6" Poison="0.63" Rock="0.63"/>
+    <type name="Flying" Electric="1.6" Grass="0.63" Fighting="0.63" Bug="0.63" Rock="1.6"/>
+    <type name="Psychic" Fighting="0.63" Psychic="0.63" Bug="1.6" Ghost="1.6" Dark="1.6"/>
+    <type name="Bug" Fire="1.6" Grass="0.63" Fighting="0.63" Flying="1.6" Rock="1.6"/>
+    <type name="Rock" Normal="0.63" Fire="0.63" Water="1.6" Grass="1.6" Fighting="1.6" Poison="0.63" Ground="1.6" Flying="0.63" Steel="1.6"/>
+    <type name="Ghost" Normal="0.39" Poison="0.63" Bug="0.63" Ghost="1.6" Dark="1.6"/>
+    <type name="Dragon" Dragon="1.6" Ice="1.6" Fairy="1.6"/>
+    <type name="Dark" Fighting="1.6" Psychic="0.39" Bug="1.6" Dark="0.63" Fairy="1.6"/>
+    <type name="Steel" Normal="0.63" Fire="1.6" Water="1.6" Electric="1.6" Grass="0.63" Ice="0.63" Poison="0.39" Flying="0.63" Psychic="0.63" Bug="0.63" Rock="0.63" Dragon="0.63" Steel="0.63" Fairy="0.63"/>
+    <type name="Fairy" Fighting="0.63" Poison="1.6" Bug="0.63" Dragon="0.39" Dark="0.63" Steel="1.6"/>
+</types>

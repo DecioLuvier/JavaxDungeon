@@ -1,7 +1,7 @@
-package game.trainer;
+package game;
 
 import engine.actors.Actor;
-import game.pokemon.Pokemon;
+
 import java.util.ArrayList;
 
 public class Trainer extends Actor {

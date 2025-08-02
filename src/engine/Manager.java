@@ -15,7 +15,6 @@ import engine.actors.Actor;
 import engine.actors.VisualActor;
 import engine.graphic.Animation;
 import engine.graphic.SpriteSheet;
-import engine.surfaces.Surface;
 import game.Game;
 
 import java.awt.Graphics;
@@ -24,29 +23,29 @@ import java.awt.image.BufferedImage;
 
 public class Manager extends JPanel {
     private Random random;
-    private Surface surface;
+    private Room room;
 
     public Manager(int seed) {
         this.random = new Random(seed);
-        this.surface = new Game();
-        this.surface.onCreate(this);
+        this.room = new Game();
+        this.room.onCreate(this);
 
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                surface.onReleasedKey(Manager.this, e);
+                room.onReleasedKey(Manager.this, e);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                surface.onPressedKey(Manager.this, e);
+                room.onPressedKey(Manager.this, e);
             }
         });
 
         new Timer(1000 / 60, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                surface.onTick(Manager.this);
+                room.onTick(Manager.this);
                 repaint();
             }
         }).start();
@@ -60,7 +59,7 @@ public class Manager extends JPanel {
         super.paintComponent(graphics);
 
         ArrayList<VisualActor> visualActors = new ArrayList<>();
-        for (Actor actor : surface.getActors()){
+        for (Actor actor : room.getActors()){
 			if (actor instanceof VisualActor) {
 				VisualActor visualActor = (VisualActor) actor;
                 if(visualActor.getVisible() && !visualActors.contains(visualActor))
@@ -95,13 +94,5 @@ public class Manager extends JPanel {
 
     public Random getRandom() {
         return this.random;
-    }
-
-    public Surface getSurface() {
-        return surface;
-    }
-
-    public void setSurface(Surface surface) {
-        this.surface = surface;
     }
 }

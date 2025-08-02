@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<moves>
+    <move name="Poison Acid" type="Poison" power="11" energy="10" cooldown="2" isCharged="false"/>
+    <move name="Air Slash" type="Flying" power="12" energy="8" cooldown="2" isCharged="false"/>
+    <move name="Astonish" type="Ghost" power="7" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Acid" type="Poison" power="10" energy="10" cooldown="2" isCharged="false"/>
+    <move name="Bite" type="Dark" power="6" energy="4" cooldown="1" isCharged="false"/>
+    <move name="Bubble" type="Water" power="10" energy="12" cooldown="2" isCharged="false"/>
+    <move name="Bug Bite" type="Bug" power="5" energy="6" cooldown="1" isCharged="false"/>
+    <move name="Bullet Punch" type="Steel" power="10" energy="11" cooldown="2" isCharged="false"/>
+    <move name="Bullet Seed" type="Grass" power="7" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Charge Beam" type="Electric" power="7" energy="14" cooldown="2" isCharged="false"/>
+    <move name="Charm" type="Fairy" power="20" energy="11" cooldown="3" isCharged="false"/>
+    <move name="Confusion" type="Psychic" power="19" energy="14" cooldown="3" isCharged="false"/>
+    <move name="Counter" type="Fighting" power="13" energy="9" cooldown="2" isCharged="false"/>
+    <move name="Cut" type="Normal" power="5" energy="5" cooldown="1" isCharged="false"/>
+    <move name="Double Kick" type="Fighting" power="10" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Dragon Breath" type="Dragon" power="6" energy="4" cooldown="1" isCharged="false"/>
+    <move name="Dragon Tail" type="Dragon" power="14" energy="8" cooldown="2" isCharged="false"/>
+    <move name="Ember" type="Fire" power="10" energy="10" cooldown="2" isCharged="false"/>
+    <move name="Extrasensory" type="Psychic" power="11" energy="11" cooldown="2" isCharged="false"/>
+    <move name="Fairy Wind" type="Fairy" power="9" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Feint Attack" type="Dark" power="11" energy="10" cooldown="2" isCharged="false"/>
+    <move name="Fire Fang" type="Fire" power="13" energy="9" cooldown="2" isCharged="false"/>
+    <move name="Fire Spin" type="Fire" power="13" energy="9" cooldown="2" isCharged="false"/>
+    <move name="Force Palm" type="Fighting" power="10" energy="16" cooldown="2" isCharged="false"/>
+    <move name="Frost Breath" type="Ice" power="11" energy="9" cooldown="2" isCharged="false"/>
+    <move name="Fury Cutter" type="Bug" power="4" energy="8" cooldown="1" isCharged="false"/>
+    <move name="Geomancy" type="Fairy" power="20" energy="14" cooldown="3" isCharged="false"/>
+    <move name="Gust" type="Flying" power="25" energy="20" cooldown="4" isCharged="false"/>
+    <move name="Hex" type="Ghost" power="8" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Hidden Power" type="Normal" power="15" energy="15" cooldown="3" isCharged="false"/>
+    <move name="Ice Fang" type="Ice" power="12" energy="20" cooldown="3" isCharged="false"/>
+    <move name="Ice Shard" type="Ice" power="10" energy="10" cooldown="2" isCharged="false"/>
+    <move name="Incinerate" type="Fire" power="32" energy="22" cooldown="5" isCharged="false"/>
+    <move name="Infestation" type="Bug" power="9" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Iron Tail" type="Steel" power="14" energy="6" cooldown="2" isCharged="false"/>
+    <move name="Karate Chop" type="Fighting" power="10" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Leafage" type="Grass" power="6" energy="4" cooldown="1" isCharged="false"/>
+    <move name="Lick" type="Ghost" power="5" energy="6" cooldown="1" isCharged="false"/>
+    <move name="Lock-On" type="Normal" power="2" energy="10" cooldown="1" isCharged="false"/>
+    <move name="Low Kick" type="Fighting" power="5" energy="5" cooldown="1" isCharged="false"/>
+    <move name="Magical Leaf" type="Grass" power="17" energy="17" cooldown="3" isCharged="false"/>
+    <move name="Metal Claw" type="Steel" power="6" energy="5" cooldown="1" isCharged="false"/>
+    <move name="Metal Sound" type="Steel" power="4" energy="6" cooldown="1" isCharged="false"/>
+    <move name="Mud Shot" type="Ground" power="4" energy="6" cooldown="1" isCharged="false"/>
+    <move name="Mud-Slap" type="Ground" power="19" energy="13" cooldown="3" isCharged="false"/>
+    <move name="Peck" type="Flying" power="10" energy="10" cooldown="2" isCharged="false"/>
+    <move name="Poison Jab" type="Poison" power="13" energy="9" cooldown="2" isCharged="false"/>
+    <move name="Poison Sting" type="Poison" power="4" energy="6" cooldown="1" isCharged="false"/>
+    <move name="Pound" type="Normal" power="6" energy="5" cooldown="1" isCharged="false"/>
+    <move name="Powder Snow" type="Ice" power="6" energy="15" cooldown="2" isCharged="false"/>
+    <move name="Present" type="Normal" power="6" energy="23" cooldown="3" isCharged="false"/>
+    <move name="Psycho Cut" type="Psychic" power="4" energy="7" cooldown="1" isCharged="false"/>
+    <move name="Psywave" type="Psychic" power="4" energy="7" cooldown="1" isCharged="false"/>
+    <move name="Quick Attack" type="Normal" power="10" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Razor Leaf" type="Grass" power="13" energy="7" cooldown="2" isCharged="false"/>
+    <move name="Rock Smash" type="Fighting" power="17" energy="12" cooldown="3" isCharged="false"/>
+    <move name="Rock Throw" type="Rock" power="13" energy="8" cooldown="2" isCharged="false"/>
+    <move name="Rollout" type="Rock" power="15" energy="19" cooldown="3" isCharged="false"/>
+    <move name="Sand Attack" type="Ground" power="4" energy="7" cooldown="1" isCharged="false"/>
+    <move name="Scratch" type="Normal" power="6" energy="4" cooldown="1" isCharged="false"/>
+    <move name="Shadow Claw" type="Ghost" power="6" energy="4" cooldown="1" isCharged="false"/>
+    <move name="Smack Down" type="Rock" power="13" energy="7" cooldown="2" isCharged="false"/>
+    <move name="Snarl" type="Dark" power="11" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Spark" type="Electric" power="4" energy="6" cooldown="1" isCharged="false"/>
+    <move name="Splash" type="Water" power="0" energy="17" cooldown="3" isCharged="false"/>
+    <move name="Steel Wing" type="Steel" power="14" energy="8" cooldown="2" isCharged="false"/>
+    <move name="Struggle Bug" type="Bug" power="15" energy="15" cooldown="3" isCharged="false"/>
+    <move name="Sucker Punch" type="Dark" power="5" energy="6" cooldown="1" isCharged="false"/>
+    <move name="Tackle" type="Normal" power="5" energy="5" cooldown="1" isCharged="false"/>
+    <move name="Take Down" type="Normal" power="7" energy="8" cooldown="2" isCharged="false"/>
+    <move name="Thunder Fang" type="Electric" power="10" energy="13" cooldown="2" isCharged="false"/>
+    <move name="Thunder Shock" type="Electric" power="4" energy="7" cooldown="1" isCharged="false"/>
+    <move name="Transform" type="Normal" power="0" energy="0" cooldown="4" isCharged="false"/>
+    <move name="Vine Whip" type="Grass" power="6" energy="5" cooldown="1" isCharged="false"/>
+    <move name="Volt Switch" type="Electric" power="13" energy="20" cooldown="3" isCharged="false"/>
+    <move name="Water Gun" type="Water" power="5" energy="5" cooldown="1" isCharged="false"/>
+    <move name="Water Shuriken" type="Water" power="9" energy="14" cooldown="2" isCharged="false"/>
+    <move name="Waterfall" type="Water" power="13" energy="7" cooldown="2" isCharged="false"/>
+    <move name="Wing Attack" type="Flying" power="10" energy="11" cooldown="2" isCharged="false"/>
+    <move name="Yawn" type="Normal" power="0" energy="13" cooldown="3" isCharged="false"/>
+    <move name="Zen Headbutt" type="Psychic" power="11" energy="9" cooldown="2" isCharged="false"/>
+    <move name="Acid Spray" type="Poison" power="20" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Acrobatics" type="Flying" power="100" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Aerial Ace" type="Flying" power="55" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Aeroblast" type="Flying" power="180" energy="100" cooldown="7" isCharged="true"/>
+    <move name="Air Cutter" type="Flying" power="55" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Ancient Power" type="Rock" power="70" energy="33" cooldown="7" isCharged="true"/>
+    <move name="Aqua Jet" type="Water" power="45" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Aqua Step" type="Water" power="55" energy="33" cooldown="7" isCharged="true"/>
+    <move name="Aqua Tail" type="Water" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Aura Sphere" type="Fighting" power="100" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Aurora Beam" type="Ice" power="80" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Avalanche" type="Ice" power="85" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Behemoth Bash" type="Steel" power="125" energy="50" cooldown="3" isCharged="true"/>
+    <move name="Behemoth Blade" type="Steel" power="200" energy="100" cooldown="7" isCharged="true"/>
+    <move name="Blast Burn" type="Fire" power="120" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Blaze Kick" type="Fire" power="40" energy="33" cooldown="2" isCharged="true"/>
+    <move name="Bleakwind Storm" type="Flying" power="150" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Blizzard" type="Ice" power="130" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Body Slam" type="Normal" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Bone Club" type="Ground" power="40" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Boomburst" type="Normal" power="150" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Brave Bird" type="Flying" power="130" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Breaking Swipe" type="Dragon" power="45" energy="33" cooldown="2" isCharged="true"/>
+    <move name="Brick Break" type="Fighting" power="40" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Brine" type="Water" power="65" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Brutal Swing" type="Dark" power="65" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Bubble Beam" type="Water" power="45" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Bug Buzz" type="Bug" power="95" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Bulldoze" type="Ground" power="80" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Clanging Scales" type="Dragon" power="120" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Close Combat" type="Fighting" power="105" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Crabhammer" type="Water" power="85" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Cross Chop" type="Fighting" power="50" energy="50" cooldown="3" isCharged="true"/>
+    <move name="Cross Poison" type="Poison" power="40" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Crunch" type="Dark" power="65" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Crush Claw" type="Normal" power="0" energy="0" cooldown="4" isCharged="true"/>
+    <move name="Crush Grip" type="Normal" power="210" energy="100" cooldown="3" isCharged="true"/>
+    <move name="Dark Pulse" type="Dark" power="80" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Darkest Lariat" type="Dark" power="80" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Dazzling Gleam" type="Fairy" power="100" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Dig" type="Ground" power="100" energy="50" cooldown="9" isCharged="true"/>
+    <move name="Disarming Voice" type="Fairy" power="70" energy="33" cooldown="8" isCharged="true"/>
+    <move name="Discharge" type="Electric" power="65" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Doom Desire" type="Steel" power="65" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Double Iron Bash" type="Steel" power="70" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Draco Meteor" type="Dragon" power="150" energy="100" cooldown="7" isCharged="true"/>
+    <move name="Dragon Ascent" type="Flying" power="140" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Dragon Claw" type="Dragon" power="45" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Dragon Energy" type="Dragon" power="155" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Dragon Pulse" type="Dragon" power="90" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Drain Punch" type="Fighting" power="50" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Draining Kiss" type="Fairy" power="60" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Drill Peck" type="Flying" power="70" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Drill Run" type="Ground" power="85" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Dynamic Punch" type="Fighting" power="85" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Earth Power" type="Ground" power="100" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Earthquake" type="Ground" power="140" energy="100" cooldown="7" isCharged="true"/>
+    <move name="Energy Ball" type="Grass" power="90" energy="50" cooldown="8" isCharged="true"/>
+    <move name="Feather Dance" type="Flying" power="35" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Fell Stinger" type="Bug" power="45" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Fire Blast" type="Fire" power="140" energy="100" cooldown="8" isCharged="true"/>
+    <move name="Fire Punch" type="Fire" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Fissure" type="Ground" power="9001" energy="25" cooldown="6" isCharged="true"/>
+    <move name="Flame Burst" type="Fire" power="70" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Flame Charge" type="Fire" power="70" energy="33" cooldown="8" isCharged="true"/>
+    <move name="Flame Wheel" type="Fire" power="55" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Flamethrower" type="Fire" power="65" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Flash Cannon" type="Steel" power="100" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Flower Trick" type="Grass" power="75" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Fly" type="Flying" power="90" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Flying Press" type="Fighting" power="115" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Focus Blast" type="Fighting" power="140" energy="100" cooldown="7" isCharged="true"/>
+    <move name="Foul Play" type="Dark" power="70" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Freeze Shock" type="Ice" power="160" energy="100" cooldown="3" isCharged="true"/>
+    <move name="Frenzy Plant" type="Grass" power="100" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Frustration" type="Normal" power="10" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Fusion Bolt" type="Electric" power="140" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Fusion Flare" type="Fire" power="140" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Future Sight" type="Psychic" power="115" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Giga Drain" type="Grass" power="50" energy="100" cooldown="8" isCharged="true"/>
+    <move name="Giga Impact" type="Normal" power="200" energy="100" cooldown="9" isCharged="true"/>
+    <move name="Glaciate" type="Ice" power="160" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Grass Knot" type="Grass" power="90" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Gunk Shot" type="Poison" power="130" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Gyro Ball" type="Steel" power="85" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Heart Stamp" type="Psychic" power="40" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Heat Wave" type="Fire" power="95" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Heavy Slam" type="Steel" power="70" energy="50" cooldown="4" isCharged="true"/>
+    <move name="High Horsepower" type="Ground" power="105" energy="100" cooldown="3" isCharged="true"/>
+    <move name="High Jump Kick" type="Fighting" power="90" energy="100" cooldown="3" isCharged="true"/>
+    <move name="Horn Attack" type="Normal" power="45" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Horn Drill" type="Normal" power="9000" energy="25" cooldown="4" isCharged="true"/>
+    <move name="Hurricane" type="Flying" power="105" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Hydro Cannon" type="Water" power="90" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Hydro Pump" type="Water" power="135" energy="100" cooldown="7" isCharged="true"/>
+    <move name="Hyper Beam" type="Normal" power="150" energy="100" cooldown="8" isCharged="true"/>
+    <move name="Hyper Fang" type="Normal" power="80" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Ice Beam" type="Ice" power="95" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Ice Burn" type="Ice" power="90" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Ice Punch" type="Ice" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Icicle Spear" type="Ice" power="55" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Icy Wind" type="Ice" power="65" energy="33" cooldown="7" isCharged="true"/>
+    <move name="Iron Head" type="Steel" power="60" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Last Resort" type="Normal" power="90" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Leaf Blade" type="Grass" power="70" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Leaf Storm" type="Grass" power="130" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Leaf Tornado" type="Grass" power="45" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Leech Life" type="Bug" power="0" energy="0" cooldown="5" isCharged="true"/>
+    <move name="Liquidation" type="Water" power="70" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Low Sweep" type="Fighting" power="40" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Lunge" type="Bug" power="55" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Luster Purge" type="Psychic" power="100" energy="100" cooldown="3" isCharged="true"/>
+    <move name="Magma Storm" type="Fire" power="75" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Magnet Bomb" type="Steel" power="75" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Mega Drain" type="Grass" power="25" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Megahorn" type="Bug" power="105" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Meteor Beam" type="Rock" power="140" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Meteor Mash" type="Steel" power="100" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Mirror Coat" type="Psychic" power="60" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Mirror Shot" type="Steel" power="50" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Mist Ball" type="Psychic" power="105" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Moonblast" type="Fairy" power="130" energy="100" cooldown="8" isCharged="true"/>
+    <move name="Moongeist Beam" type="Ghost" power="230" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Mud Bomb" type="Ground" power="60" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Muddy Water" type="Water" power="45" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Mystical Fire" type="Fire" power="60" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Natures Madness" type="Fairy" power="90" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Night Shade" type="Ghost" power="60" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Night Slash" type="Dark" power="45" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Oblivion Wing" type="Flying" power="85" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Obstruct" type="Dark" power="20" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Octazooka" type="Water" power="55" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Ominous Wind" type="Ghost" power="55" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Origin Pulse" type="Water" power="120" energy="100" cooldown="3" isCharged="true"/>
+    <move name="Outrage" type="Dragon" power="110" energy="50" cooldown="8" isCharged="true"/>
+    <move name="Overheat" type="Fire" power="160" energy="100" cooldown="8" isCharged="true"/>
+    <move name="Parabolic Charge" type="Electric" power="70" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Payback" type="Dark" power="95" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Petal Blizzard" type="Grass" power="110" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Play Rough" type="Fairy" power="90" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Poison Fang" type="Poison" power="30" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Poltergeist" type="Ghost" power="140" energy="100" cooldown="7" isCharged="true"/>
+    <move name="Power Gem" type="Rock" power="80" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Power Whip" type="Grass" power="90" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Power-Up Punch" type="Fighting" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Precipice Blades" type="Ground" power="120" energy="100" cooldown="3" isCharged="true"/>
+    <move name="Psybeam" type="Psychic" power="65" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Psychic" type="Psychic" power="95" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Psychic Fangs" type="Psychic" power="25" energy="33" cooldown="2" isCharged="true"/>
+    <move name="Psycho Boost" type="Psychic" power="70" energy="50" cooldown="8" isCharged="true"/>
+    <move name="Psyshock" type="Psychic" power="60" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Psystrike" type="Psychic" power="95" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Rage Fist" type="Ghost" power="100" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Razor Shell" type="Water" power="55" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Rest" type="Normal" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Return" type="Normal" power="25" energy="33" cooldown="1" isCharged="true"/>
+    <move name="Roar of Time" type="Dragon" power="160" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Rock Blast" type="Rock" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Rock Slide" type="Rock" power="75" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Rock Tomb" type="Rock" power="65" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Rock Wrecker" type="Rock" power="110" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Sacred Fire" type="Fire" power="120" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Sacred Sword" type="Fighting" power="50" energy="33" cooldown="2" isCharged="true"/>
+    <move name="Sand Tomb" type="Ground" power="60" energy="33" cooldown="8" isCharged="true"/>
+    <move name="Sandsear Storm" type="Ground" power="150" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Scald" type="Water" power="75" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Scorching Sands" type="Ground" power="90" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Seed Bomb" type="Grass" power="55" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Seed Flare" type="Grass" power="115" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Shadow Ball" type="Ghost" power="100" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Shadow Bone" type="Ghost" power="85" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Shadow Force" type="Ghost" power="140" energy="100" cooldown="4" isCharged="true"/>
+    <move name="Shadow Punch" type="Ghost" power="35" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Shadow Sneak" type="Ghost" power="50" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Signal Beam" type="Bug" power="75" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Silver Wind" type="Bug" power="65" energy="33" cooldown="7" isCharged="true"/>
+    <move name="Skull Bash" type="Normal" power="130" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Sky Attack" type="Flying" power="80" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Sludge" type="Poison" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Sludge Bomb" type="Poison" power="85" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Sludge Wave" type="Poison" power="105" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Solar Beam" type="Grass" power="180" energy="100" cooldown="10" isCharged="true"/>
+    <move name="Spacial Rend" type="Dragon" power="160" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Sparkling Aria" type="Water" power="85" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Spirit Shackle" type="Ghost" power="70" energy="33" cooldown="5" isCharged="true"/>
+    <move name="Stomp" type="Normal" power="50" energy="50" cooldown="3" isCharged="true"/>
+    <move name="Stone Edge" type="Rock" power="105" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Struggle" type="Normal" power="35" energy="0" cooldown="4" isCharged="true"/>
+    <move name="Submission" type="Fighting" power="55" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Sunsteel Strike" type="Steel" power="230" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Superpower" type="Fighting" power="85" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Surf" type="Water" power="60" energy="50" cooldown="3" isCharged="true"/>
+    <move name="Swift" type="Normal" power="65" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Synchronoise" type="Psychic" power="80" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Thunder" type="Electric" power="100" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Thunder Cage" type="Electric" power="220" energy="100" cooldown="6" isCharged="true"/>
+    <move name="Thunder Punch" type="Electric" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Thunderbolt" type="Electric" power="80" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Torch Song" type="Fire" power="100" energy="50" cooldown="7" isCharged="true"/>
+    <move name="Trailblaze" type="Grass" power="65" energy="50" cooldown="4" isCharged="true"/>
+    <move name="Tri Attack" type="Normal" power="75" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Triple Axel" type="Ice" power="60" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Twister" type="Dragon" power="50" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Upper Hand" type="Fighting" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="V-create" type="Fire" power="105" energy="33" cooldown="6" isCharged="true"/>
+    <move name="Vise Grip" type="Normal" power="35" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Volt Tackle" type="Electric" power="90" energy="33" cooldown="7" isCharged="true"/>
+    <move name="Water Pulse" type="Water" power="65" energy="50" cooldown="6" isCharged="true"/>
+    <move name="Wild Charge" type="Electric" power="90" energy="50" cooldown="5" isCharged="true"/>
+    <move name="Wildbolt Storm" type="Electric" power="150" energy="100" cooldown="5" isCharged="true"/>
+    <move name="Wrap" type="Normal" power="60" energy="33" cooldown="6" isCharged="true"/>
+    <move name="X-Scissor" type="Bug" power="45" energy="33" cooldown="3" isCharged="true"/>
+    <move name="Zap Cannon" type="Electric" power="140" energy="100" cooldown="7" isCharged="true"/>
+</moves>

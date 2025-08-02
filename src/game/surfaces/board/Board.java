@@ -3,8 +3,8 @@ package game.surfaces.board;
 import engine.Manager;
 import engine.actors.VisualActor;
 import engine.surfaces.GridSurface;
-import game.pokemon.Pokemon;
-import game.pokemon.Pokedex;
+import game.Pokemon;
+import game.data.Pokedex;
 
 public class Board extends GridSurface {
     private static int gridSize = 56;

@@ -1,11 +1,11 @@
-package game.pokemon;
+package game;
 
 import java.util.Random;
 
 import engine.Manager;
 import engine.actors.VisualActor;
 import engine.graphic.Animation;
-import game.trainer.Trainer;
+import game.data.Pokedex;
 
 public class Pokemon extends VisualActor {
 	// pokemongo.fandom.com/wiki/Combat_Power

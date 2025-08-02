@@ -10,11 +10,11 @@ import engine.actors.VisualActor;
 import engine.graphic.Animation;
 import engine.graphic.SpriteSheet;
 import engine.surfaces.Surface;
-import game.pokemon.Pokemon;
-import game.pokemon.Type;
+import game.Pokemon;
+import game.Trainer;
+import game.data.Move;
+import game.data.Type;
 import game.surfaces.board.Floor;
-import game.trainer.Trainer;
-import game.pokemon.Move;
 
 public class Battle extends Surface {
     private static SpriteSheet background = new SpriteSheet("src/game/surfaces/battle/Background.png", 1, 0, 0, 0);
@@ -206,34 +206,12 @@ public class Battle extends Surface {
         return (int) Math.round((baseXP * level / 7.0) * trainerBonus);
     }
 
-    public static double calculateTypeMultiplier(Type attack, Type defenderMain, Type defenderSecondary) {
-        final double[][] TYPE_EFFECTIVENESS = {
-            //NOR,  FIR,  WAT,  ELE,  GRA,  ICE,  FIG,  POI,  GRO,  FLY,  PSY,  BUG,  ROC,  GHO,  DRA,  DAR,  STE,  FAI,  NONE
-            { 1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  0.63, 0.39, 1.0,  1.0,  0.63, 1.0,  1.0 }, //NORMAL
-            { 1.0,  0.63, 0.63, 1.0,  1.6,  1.6,  1.0,  1.0,  1.0,  1.0,  1.0,  1.6,  0.63, 1.0,  0.63, 1.0,  1.6,  1.0,  1.0 }, //FIRE
-            { 1.0,  1.6,  0.63, 1.0,  0.63, 1.0,  1.0,  1.0,  1.6,  1.0,  1.0,  1.0,  1.6,  1.0,  0.63, 1.0,  1.0,  1.0,  1.0 }, //WATER
-            { 1.0,  1.0,  1.6,  0.63, 0.63, 1.0,  1.0,  1.0,  0.39, 1.6,  1.0,  1.0,  1.0,  1.0,  0.63, 1.0,  1.0,  1.0,  1.0 }, //ELECTRIC
-            { 1.0,  0.63, 1.6,  1.0,  0.63, 1.0,  1.0,  0.63, 1.6,  0.63, 1.0,  0.63, 1.6,  1.0,  0.63, 1.0,  0.63, 1.0,  1.0 }, //GRASS
-            { 1.0,  0.63, 0.63, 1.0,  1.6,  0.63, 1.0,  1.0,  1.6,  1.6,  1.0,  1.0,  1.0,  1.0,  1.6,  1.0,  0.63, 1.0,  1.0 }, //ICE
-            { 1.6,  1.0,  1.0,  1.0,  1.0,  1.6,  1.0,  0.63, 1.0,  0.63, 0.63, 0.63, 1.6,  0.39, 1.0,  1.6,  1.6,  0.63, 1.0 }, //FIGHTING
-            { 1.0,  1.0,  1.0,  1.0,  1.6,  1.0,  1.0,  0.63, 0.63, 1.0,  1.0,  1.0,  0.63, 0.63, 1.0,  1.0,  0.39, 1.6,  1.0 }, //POISON
-            { 1.0,  1.6,  1.0,  1.6,  0.63, 1.0,  1.0,  1.6,  1.0,  0.39, 1.0,  0.63, 1.6,  1.0,  1.0,  1.0,  1.6,  1.0,  1.0 }, //GROUND
-            { 1.0,  1.0,  1.0,  0.63, 1.6,  1.0,  1.6,  1.0,  1.0,  1.0,  1.0,  1.6,  0.63, 1.0,  1.0,  1.0,  0.63, 1.0,  1.0 }, //FLYING
-            { 1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.6,  1.6,  1.0,  1.0,  0.63, 1.0,  1.0,  1.0,  1.0,  0.39, 0.63, 1.0,  1.0 }, //PSYCHIC
-            { 1.0,  0.63, 1.0,  1.0,  1.6,  1.0,  0.63, 0.63, 1.0,  0.63, 1.6,  1.0,  1.0,  0.63, 1.0,  1.6,  0.63, 0.63, 1.0 }, //BUG
-            { 1.0,  1.6,  1.0,  1.0,  1.0,  1.6,  0.63, 1.0,  0.63, 1.6,  1.0,  1.6,  1.0,  1.0,  1.0,  1.0,  0.63, 1.0,  1.0 }, //ROCK
-            { 0.39, 1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  0.63, 1.0,  1.0,  1.6,  1.0,  1.0,  1.6,  1.0,  0.63, 1.0,  1.0,  1.0 }, //GHOST
-            { 1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.6,  1.0,  0.63, 0.39, 1.0 }, //DRAGON
-            { 1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  0.63, 1.0,  1.0,  1.0,  1.6,  1.0,  1.0,  1.6,  1.0,  0.63, 1.0,  0.63, 1.0 }, //DARK
-            { 1.0,  0.63, 0.63, 0.63, 1.0,  1.6,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.6,  1.0,  1.0,  1.0,  0.63, 1.6,  1.0 }, //STEEL
-            { 1.0,  0.63, 1.0,  1.0,  1.0,  1.0,  1.6,  0.63, 1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.6,  1.6,  0.63, 1.0,  1.0 }, //FAIRY
-            { 1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0 }  //NONE
-        };
-
-      double multiplier1 = TYPE_EFFECTIVENESS[attack.ordinal()][defenderMain.ordinal()];
-      double multiplier2 = TYPE_EFFECTIVENESS[attack.ordinal()][defenderSecondary.ordinal()];
-      return multiplier1 * multiplier2;
-    }
+public static double calculateTypeMultiplier(Type attack, Type defenderMain, Type defenderSecondary) {
+    String attackTypeName = attack.getName();
+    double multiplierMain = defenderMain.getResistances().getOrDefault(attackTypeName, 1.0);
+    double multiplierSecondary = defenderSecondary.getResistances().getOrDefault(attackTypeName, 1.0);
+    return multiplierMain * multiplierSecondary;
+}
 
     public static double calculateCaptureChance(Pokemon pokemon) {
         int HPmax = pokemon.getHp();
