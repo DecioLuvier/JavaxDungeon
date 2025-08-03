@@ -7,8 +7,9 @@ import java.io.File;
 import java.util.*;
 
 public class Type {
-    private final String name;
-    private final Map<String, Double> resistances;
+    private static Map<String, Type> entries = load();
+    private String name;
+    private Map<String, Double> resistances;
 
     private Type(String name, Map<String, Double> resistances) {
         this.name = name;
@@ -23,7 +24,8 @@ public class Type {
         return resistances;
     }
 
-    public static Type get(String name) {
+    private static Map<String, Type> load() {
+        Map<String, Type> entries = new HashMap<>();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -34,30 +36,31 @@ public class Type {
 
             for (int i = 0; i < typeList.getLength(); i++) {
                 Element type = (Element) typeList.item(i);
+                String name = type.getAttribute("name");
                 
-                if (type.getAttribute("name").equals(name)) {
-                    Map<String, Double> resistances = new HashMap<>();
-
-                    NamedNodeMap attributes = type.getAttributes();
-                    for (int j = 0; j < attributes.getLength(); j++) {
-                        Node attribute = attributes.item(j);
-                        String attrName = attribute.getNodeName();
-                        if (!attrName.equals("name")) { 
-                            double value = Double.parseDouble(attribute.getNodeValue());
-                            resistances.put(attrName, value);
-                        }
+                Map<String, Double> resistances = new HashMap<>();
+                NamedNodeMap attributes = type.getAttributes();
+                for (int j = 0; j < attributes.getLength(); j++) {
+                    Node attribute = attributes.item(j);
+                    String attrName = attribute.getNodeName();
+                    if (!attrName.equals("name")) {
+                        double value = Double.parseDouble(attribute.getNodeValue());
+                        resistances.put(attrName, value);
                     }
-                    return new Type(name, resistances);
                 }
+                entries.put(name, new Type(name, resistances));
             }
-
-            System.err.println("Type with name " + name + " not found.");
-            return null;
-
         } catch (Exception e) {
             System.err.println("Error loading types from XML: " + e.getMessage());
             e.printStackTrace();
-            return null;
         }
+        return entries;
+    }
+
+    public static Type get(String name) {
+        Type type = entries.get(name);
+        if (type == null) 
+            System.err.println("Type with name " + name + " not found.");
+        return type;
     }
 }

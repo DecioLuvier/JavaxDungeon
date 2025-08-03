@@ -44,7 +44,7 @@
     <move name="Metal Claw" type="Steel" power="6" energy="5" cooldown="1" isCharged="false"/>
     <move name="Metal Sound" type="Steel" power="4" energy="6" cooldown="1" isCharged="false"/>
     <move name="Mud Shot" type="Ground" power="4" energy="6" cooldown="1" isCharged="false"/>
-    <move name="Mud-Slap" type="Ground" power="19" energy="13" cooldown="3" isCharged="false"/>
+    <move name="Mud Slap" type="Ground" power="19" energy="13" cooldown="3" isCharged="false"/>
     <move name="Peck" type="Flying" power="10" energy="10" cooldown="2" isCharged="false"/>
     <move name="Poison Jab" type="Poison" power="13" energy="9" cooldown="2" isCharged="false"/>
     <move name="Poison Sting" type="Poison" power="4" energy="6" cooldown="1" isCharged="false"/>
@@ -225,7 +225,7 @@
     <move name="Poltergeist" type="Ghost" power="140" energy="100" cooldown="7" isCharged="true"/>
     <move name="Power Gem" type="Rock" power="80" energy="50" cooldown="6" isCharged="true"/>
     <move name="Power Whip" type="Grass" power="90" energy="50" cooldown="5" isCharged="true"/>
-    <move name="Power-Up Punch" type="Fighting" power="50" energy="33" cooldown="4" isCharged="true"/>
+    <move name="Power Up Punch" type="Fighting" power="50" energy="33" cooldown="4" isCharged="true"/>
     <move name="Precipice Blades" type="Ground" power="120" energy="100" cooldown="3" isCharged="true"/>
     <move name="Psybeam" type="Psychic" power="65" energy="50" cooldown="6" isCharged="true"/>
     <move name="Psychic" type="Psychic" power="95" energy="50" cooldown="6" isCharged="true"/>

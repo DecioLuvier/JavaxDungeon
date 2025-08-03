@@ -2,8 +2,6 @@ package game;
 
 import engine.Room;
 
-import java.util.Map;
-
 import engine.Manager;
 import game.data.Pokedex;
 import game.surfaces.battle.Battle;

@@ -3,18 +3,20 @@ package game.data;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-
+import java.util.HashMap;
+import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class Move {
-    private final String name;
-    private final Type type;
-    private final int power;
-    private final int energy;
-    private final int cooldown;
-    private final boolean isCharged;
+    private static Map<String, Move> entries = load();
+    private String name;
+    private Type type;
+    private int power;
+    private int energy;
+    private int cooldown;
+    private boolean isCharged;
 
     private Move(String name, Type type, int power, int energy, int cooldown, boolean isCharged) {
         this.name = name;
@@ -49,7 +51,8 @@ public class Move {
         return cooldown;
     }
 
-    public static Move get(String Name) {
+    private static Map<String, Move> load() {
+        Map<String, Move> entries = new HashMap<>();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -60,25 +63,29 @@ public class Move {
 
             for (int i = 0; i < moveList.getLength(); i++) {
                 Element move = (Element) moveList.item(i);
-                
-                if (move.getAttribute("name").equals(Name)) {
-                    String name = move.getAttribute("name");
-                    Type type = Type.get(move.getAttribute("type"));
-                    int power = Integer.parseInt(move.getAttribute("power"));
-                    int energy = Integer.parseInt(move.getAttribute("energy"));
-                    int cooldown = Integer.parseInt(move.getAttribute("cooldown"));
-                    boolean isCharged = Boolean.parseBoolean(move.getAttribute("isCharged"));
-                    return new Move(name, type, power, energy, cooldown, isCharged);
-                }
+                String name = move.getAttribute("name");
+                Move moveObj = new Move(
+                    name,
+                    Type.get(move.getAttribute("type")),
+                    Integer.parseInt(move.getAttribute("power")),
+                    Integer.parseInt(move.getAttribute("energy")),
+                    Integer.parseInt(move.getAttribute("cooldown")),
+                    Boolean.parseBoolean(move.getAttribute("isCharged"))
+                );
+                entries.put(name, moveObj);
             }
-
-            System.err.println("Move with name " + Name + " not found.");
-            return null;
 
         } catch (Exception e) {
             System.err.println("Error loading moves from XML: " + e.getMessage());
             e.printStackTrace();
-            return null;
         }
+        return entries;
+    }
+
+    public static Move get(String name) {
+        Move move = entries.get(name);
+        if (move == null)
+            System.err.println("Move with name " + name + " not found.");
+        return move;
     }
 }

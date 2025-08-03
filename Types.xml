@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <types>
+    <type name="None"/>
     <type name="Normal" Ghost="0.39" Rock="0.63" Steel="0.63" Fighting="1.6"/>
     <type name="Fire" Fire="0.63" Water="1.6" Grass="0.63" Ice="0.63" Bug="0.63" Rock="1.6" Dragon="0.63" Steel="0.63" Fairy="0.63"/>
     <type name="Water" Fire="0.63" Water="0.63" Electric="1.6" Grass="1.6" Ice="0.63" Steel="0.63"/>

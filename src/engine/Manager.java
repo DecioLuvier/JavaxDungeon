@@ -26,6 +26,9 @@ public class Manager extends JPanel {
     private Room room;
 
     public Manager(int seed) {
+        setFocusable(true);
+        setRequestFocusEnabled(true);
+
         this.random = new Random(seed);
         this.room = new Game();
         this.room.onCreate(this);

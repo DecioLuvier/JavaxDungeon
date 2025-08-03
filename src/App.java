@@ -14,5 +14,6 @@ class App {
         frame.add(camera, BorderLayout.CENTER);
 
         frame.setVisible(true);     
+        camera.requestFocusInWindow();
     }
 }
