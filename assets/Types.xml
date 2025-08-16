@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types>
+    <type name="Normal">
+        <resistance type="Ghost" value="0.39"/>
+        <resistance type="Rock" value="0.63"/>
+        <resistance type="Steel" value="0.63"/>
+        <resistance type="Fighting" value="1.6"/>
+    </type>
+    <type name="Fire">
+        <resistance type="Fire" value="0.63"/>
+        <resistance type="Water" value="1.6"/>
+        <resistance type="Grass" value="0.63"/>
+        <resistance type="Ice" value="0.63"/>
+        <resistance type="Bug" value="0.63"/>
+        <resistance type="Rock" value="1.6"/>
+        <resistance type="Dragon" value="0.63"/>
+        <resistance type="Steel" value="0.63"/>
+        <resistance type="Fairy" value="0.63"/>
+    </type>
+    <type name="Water">
+        <resistance type="Fire" value="0.63"/>
+        <resistance type="Water" value="0.63"/>
+        <resistance type="Electric" value="1.6"/>
+        <resistance type="Grass" value="1.6"/>
+        <resistance type="Ice" value="0.63"/>
+        <resistance type="Steel" value="0.63"/>
+    </type>
+    <type name="Electric">
+        <resistance type="Electric" value="0.63"/>
+        <resistance type="Ground" value="1.6"/>
+        <resistance type="Flying" value="0.63"/>
+        <resistance type="Steel" value="0.63"/>
+    </type>
+    <type name="Grass">
+        <resistance type="Fire" value="1.6"/>
+        <resistance type="Water" value="0.63"/>
+        <resistance type="Electric" value="0.63"/>
+        <resistance type="Grass" value="0.63"/>
+        <resistance type="Poison" value="1.6"/>
+        <resistance type="Ground" value="0.63"/>
+        <resistance type="Flying" value="1.6"/>
+        <resistance type="Bug" value="1.6"/>
+        <resistance type="Dragon" value="0.63"/>
+    </type>
+    <type name="Ice">
+        <resistance type="Fire" value="1.6"/>
+        <resistance type="Grass" value="0.63"/>
+        <resistance type="Ice" value="0.63"/>
+        <resistance type="Fighting" value="1.6"/>
+        <resistance type="Rock" value="1.6"/>
+        <resistance type="Steel" value="1.6"/>
+    </type>
+    <type name="Fighting">
+        <resistance type="Flying" value="1.6"/>
+        <resistance type="Psychic" value="1.6"/>
+        <resistance type="Bug" value="0.63"/>
+        <resistance type="Rock" value="0.63"/>
+        <resistance type="Dark" value="0.63"/>
+        <resistance type="Fairy" value="1.6"/>
+    </type>
+    <type name="Poison">
+        <resistance type="Grass" value="0.63"/>
+        <resistance type="Poison" value="0.63"/>
+        <resistance type="Ground" value="1.6"/>
+        <resistance type="Bug" value="0.63"/>
+        <resistance type="Ghost" value="0.63"/>
+        <resistance type="Psychic" value="1.6"/>
+        <resistance type="Fairy" value="0.63"/>
+    </type>
+    <type name="Ground">
+        <resistance type="Water" value="1.6"/>
+        <resistance type="Electric" value="0.39"/>
+        <resistance type="Grass" value="1.6"/>
+        <resistance type="Poison" value="0.63"/>
+        <resistance type="Rock" value="0.63"/>
+    </type>
+    <type name="Flying">
+        <resistance type="Electric" value="1.6"/>
+        <resistance type="Grass" value="0.63"/>
+        <resistance type="Fighting" value="0.63"/>
+        <resistance type="Bug" value="0.63"/>
+        <resistance type="Rock" value="1.6"/>
+    </type>
+    <type name="Psychic">
+        <resistance type="Fighting" value="0.63"/>
+        <resistance type="Psychic" value="0.63"/>
+        <resistance type="Bug" value="1.6"/>
+        <resistance type="Ghost" value="1.6"/>
+        <resistance type="Dark" value="1.6"/>
+    </type>
+    <type name="Bug">
+        <resistance type="Fire" value="1.6"/>
+        <resistance type="Grass" value="0.63"/>
+        <resistance type="Fighting" value="0.63"/>
+        <resistance type="Flying" value="1.6"/>
+        <resistance type="Rock" value="1.6"/>
+    </type>
+    <type name="Rock">
+        <resistance type="Normal" value="0.63"/>
+        <resistance type="Fire" value="0.63"/>
+        <resistance type="Water" value="1.6"/>
+        <resistance type="Grass" value="1.6"/>
+        <resistance type="Fighting" value="1.6"/>
+        <resistance type="Poison" value="0.63"/>
+        <resistance type="Ground" value="1.6"/>
+        <resistance type="Flying" value="0.63"/>
+        <resistance type="Steel" value="1.6"/>
+    </type>
+    <type name="Ghost">
+        <resistance type="Normal" value="0.39"/>
+        <resistance type="Poison" value="0.63"/>
+        <resistance type="Bug" value="0.63"/>
+        <resistance type="Ghost" value="1.6"/>
+        <resistance type="Dark" value="1.6"/>
+    </type>
+    <type name="Dragon">
+        <resistance type="Dragon" value="1.6"/>
+        <resistance type="Ice" value="1.6"/>
+        <resistance type="Fairy" value="1.6"/>
+    </type>
+    <type name="Dark">
+        <resistance type="Fighting" value="1.6"/>
+        <resistance type="Psychic" value="0.39"/>
+        <resistance type="Bug" value="1.6"/>
+        <resistance type="Dark" value="0.63"/>
+        <resistance type="Fairy" value="1.6"/>
+    </type>
+    <type name="Steel">
+        <resistance type="Normal" value="0.63"/>
+        <resistance type="Fire" value="1.6"/>
+        <resistance type="Water" value="1.6"/>
+        <resistance type="Electric" value="1.6"/>
+        <resistance type="Grass" value="0.63"/>
+        <resistance type="Ice" value="0.63"/>
+        <resistance type="Poison" value="0.39"/>
+        <resistance type="Flying" value="0.63"/>
+        <resistance type="Psychic" value="0.63"/>
+        <resistance type="Bug" value="0.63"/>
+        <resistance type="Rock" value="0.63"/>
+        <resistance type="Dragon" value="0.63"/>
+        <resistance type="Steel" value="0.63"/>
+        <resistance type="Fairy" value="0.63"/>
+    </type>
+    <type name="Fairy">
+        <resistance type="Fighting" value="0.63"/>
+        <resistance type="Poison" value="1.6"/>
+        <resistance type="Bug" value="0.63"/>
+        <resistance type="Dragon" value="0.39"/>
+        <resistance type="Dark" value="0.63"/>
+        <resistance type="Steel" value="1.6"/>
+    </type>
+</types>

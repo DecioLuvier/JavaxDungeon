@@ -1,13 +1,10 @@
 package game;
 
-import java.util.Random;
+import game.datas.Move;
+import game.datas.Pokedex;
+import game.datas.Type;
 
-import engine.Manager;
-import engine.actors.VisualActor;
-import engine.graphic.Animation;
-import game.data.Pokedex;
-
-public class Pokemon extends VisualActor {
+public class Pokemon {
 	// pokemongo.fandom.com/wiki/Combat_Power
     private static final double[] LEVEL_SCALARS = { 
         0.094000000, 0.166397870, 0.215732470, 0.255720050, 0.290249880, //01-05
@@ -21,110 +18,48 @@ public class Pokemon extends VisualActor {
         0.795300010, 0.800300010, 0.805300010, 0.810300010, 0.815300010, //40-45
         0.820300010, 0.825300010, 0.830300010, 0.835300010, 0.840300010  //45-50
     };
-	//Individual Values
+
     private Pokedex stats;
-    private final int ivHp;
-    private final int ivAttack;
-    private final int ivDefense;
-    // Stored calculated stats
-    private int hp;
-    private int attack;
-    private int defense;
-    private int score;
-	//
-    private int level;
-    private int exp;
-	// Combat related
-	private Trainer trainer;
-	private int currentHP; // The amount of health it currently has
-	private int currentMP; // The amount of energy it has to perform charged attacks
-	private int currentCD; // The number of turns it needs to wait to perform an action
+    private Trainer trainer;
+    private int hp, attack, defense, score;
+	private int currentHP, currentMP, currentCD, level, exp;
 
-    public Pokemon(Manager manager, Pokedex stats) {
-        super(new Animation(stats.getSpriteSheet(), 1, 1));
+    public Pokemon(Pokedex stats) {
         this.stats = stats;
-
-        Random random = manager.getRandom();
-        this.ivHp = random.nextInt(16);      
-        this.ivAttack = random.nextInt(16);  
-        this.ivDefense = random.nextInt(16); 
-
         this.currentHP = 0;
         this.currentMP = 0;
         this.currentCD = 0;
 		this.level = 0;
 		this.trainer = null;
-
 		addExperience(0);
     } 
 
-    public int getCurrentCD() {
-        return currentCD;
-    }
-
-	public int getCurrentHP() {
-		return currentHP;
-	}
-
-	public int getCurrentMP() {
-		return currentMP;
-	}
-
-    public void setCurrentCD(int currentCD) {
-        this.currentCD = currentCD;
-    }
-
-    public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
-    }
-
-    public void setCurrentMP(int currentMP) {
-        this.currentMP = currentMP;
-    }
-
-	public Trainer getTrainer() {
-		return trainer;
-	}
-
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
-    }
-
-    public Pokedex getStats() {
-        return stats;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public int getAttack() {
-        return attack;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public int getLevel() {
-        return level;
-    }
+    public int getCurrentCD() { return currentCD; }
+	public int getCurrentHP() { return currentHP; }
+	public int getCurrentMP() { return currentMP; }
+	public Trainer getTrainer() { return trainer; }
+    public Pokedex getStats() { return stats; }
+    public int getScore() { return score; }
+    public int getHp() { return hp; }
+    public int getAttack() { return attack; }
+    public int getDefense() { return defense; }
+    public int getLevel() { return level; }
+    public void setCurrentCD(int currentCD) { this.currentCD = currentCD; }
+    public void setCurrentHP(int currentHP) { this.currentHP = currentHP; }
+    public void setCurrentMP(int currentMP) { this.currentMP = currentMP; }
+    public void setTrainer(Trainer trainer) { this.trainer = trainer; }
 
     public void setLevel(int newLevel) {
         this.level = newLevel;
         double levelScalar = LEVEL_SCALARS[newLevel - 1];
-        this.hp = (int) Math.round((stats.getBaseHp() + ivHp) * levelScalar);
+        this.hp = (int) Math.round((stats.getBaseHp()) * levelScalar);
         this.currentHP = this.hp;
-        this.attack = (int) Math.round((stats.getBaseAttack() + ivAttack) * levelScalar);
-        this.defense = (int) Math.round((stats.getBaseDefense() + ivDefense) * levelScalar);
-        this.score = (int) Math.round(((stats.getBaseAttack() + ivAttack) * 
-                                              Math.sqrt(stats.getBaseDefense() + ivDefense) * 
-                                              Math.sqrt(stats.getBaseHp() + ivHp) * 
-                                              Math.pow(levelScalar, 2)) / 10);
+        this.attack = (int) Math.round((stats.getBaseAttack()) * levelScalar);
+        this.defense = (int) Math.round((stats.getBaseDefense()) * levelScalar);
+        this.score = (int) Math.round(((stats.getBaseAttack()) * 
+                                        Math.sqrt(stats.getBaseDefense()) * 
+                                        Math.sqrt(stats.getBaseHp()) * 
+                                        Math.pow(levelScalar, 2)) / 10);
 
 		checkEvolution();
     }
@@ -133,7 +68,6 @@ public class Pokemon extends VisualActor {
 		if(stats.getPokemonToEvolve() != null && level >= stats.getLevelToEvolve()){
             this.stats = stats.getPokemonToEvolve();
 			setLevel(level);
-            setAnimation(new Animation(stats.getSpriteSheet(), 1, 1));
         }
     }
 
@@ -145,5 +79,45 @@ public class Pokemon extends VisualActor {
             setLevel(level + 1);
             expForNextLevel = level * level * level;
         }
+    }
+
+    public static int calculateDamage(Pokemon attacker, Pokemon target, Move move) {
+        final int power = move.getPower();
+        final int attackStat = attacker.getAttack();
+        final int defenseStat = target.getDefense();
+        final double modifier = calculateTypeMultiplier(move.getType(), target.getStats().getMainType(), target.getStats().getSecondaryType());
+        double stab = 1.0;
+        if (move.getType().equals(attacker.getStats().getMainType()) || move.getType().equals(attacker.getStats().getSecondaryType())) 
+            stab = 1.2;
+        double trainerBonus = 1.0;
+        if (target.getTrainer() != null) 
+            trainerBonus = 1.3;
+        return (int) (0.5 * power * ((double) attackStat / defenseStat) * modifier * stab * trainerBonus) + 1;
+    }
+
+    public static int calculateXP(Pokemon pokemon) {
+        final int baseXP = pokemon.getStats().getBaseExp();
+        final int level = pokemon.getLevel();
+        double trainerBonus = 1.0;
+        if (pokemon.getTrainer() != null) 
+            trainerBonus = 1.5;
+        return (int) Math.round((baseXP * level / 7.0) * trainerBonus);
+    }
+
+    public static double calculateTypeMultiplier(Type attack, Type defenderMain, Type defenderSecondary) {
+        double multiplierMain = 1.0;
+        double multiplierSecondary = 1.0;
+        if (defenderMain != null) 
+            multiplierMain = defenderMain.getResistances().getOrDefault(attack.getName(), 1.0);
+        if (defenderSecondary != null) 
+            multiplierSecondary = defenderSecondary.getResistances().getOrDefault(attack.getName(), 1.0);
+        return multiplierMain * multiplierSecondary;
+    }
+
+    public static double calculateCaptureChance(Pokemon pokemon) {
+        final int HPmax = pokemon.getHp();
+        final int HPcurrent = pokemon.getCurrentHP();
+        final double catchRate = pokemon.getStats().getCatchRate();
+        return Math.min(1.0, (((3.0 * HPmax - 2.0 * HPcurrent) / (3.0 * HPmax)) * catchRate) / 255.0);
     }
 }

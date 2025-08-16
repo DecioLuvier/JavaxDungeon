@@ -1,15 +1,17 @@
 package game;
 
-import engine.actors.Actor;
-
 import java.util.ArrayList;
 
-public class Trainer extends Actor {
-    private static final int MAX_TEAM_SIZE = 4;
+public class Trainer {
+    private static final int MAX_TEAM_SIZE = 6;
     private ArrayList<Pokemon> team;
+    private final boolean isNpc;
+    private boolean isOnBattle;
 
-    public Trainer() {
+    public Trainer(boolean isNpc) {
         this.team = new ArrayList<>(MAX_TEAM_SIZE);
+        this.isNpc = isNpc;
+        this.isOnBattle = false;
     }
 
     public boolean isTeamFull() {
@@ -40,5 +42,20 @@ public class Trainer extends Actor {
     public void removePokemon(Pokemon pokemon) {
         if (pokemon != null) 
             team.remove(pokemon);
+    }
+
+    public int getScore(){
+        int score = 0;
+        for(Pokemon pokemon : team)
+            score += pokemon.getScore();
+        return score;
+    }
+
+    public boolean isNpc() {
+        return isNpc;
+    }
+
+    public boolean isOnBattle() {
+        return isOnBattle;
     }
 }

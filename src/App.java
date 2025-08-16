@@ -1,7 +1,7 @@
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
-import engine.Manager;
+import game.Game;
 
 class App {
     public static void main(String[] args) {
@@ -10,7 +10,7 @@ class App {
         frame.setSize(664, 900);
         frame.setResizable(false);
 
-        Manager camera = new Manager(12);
+        Game camera = new Game();
         frame.add(camera, BorderLayout.CENTER);
 
         frame.setVisible(true);     
