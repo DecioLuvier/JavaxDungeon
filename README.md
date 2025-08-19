@@ -12,9 +12,8 @@ creatures can be captured and trained by humans to fight against each other
 like a sport.
     
 
-<table>
-  <tr>
-    <td width="60%">
+<p align="left">
+  <img src="images/pikachu.png" width="200" align="right">
     <p>
       The work consists of implementing the Pokémon game using the <strong>Java language</strong>.
     </p>
@@ -28,13 +27,7 @@ like a sport.
     play to indicate the winning player so far. The game ends when all available Pokémon 
     have been captured. In the first case, the winning player will be the one who has the Pokémon team with the most 
     experience score.
-    </p>
-    </td>
-    <td width="40%">
-      <img src="images/pikachu.png" alt="Pikachu" width="200">
-    </td>
-  </tr>
-</table>
+</p>
 
 
 
