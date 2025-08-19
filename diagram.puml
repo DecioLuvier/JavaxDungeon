@@ -1,0 +1,683 @@
+@startuml Engine
+
+package engine 
+{
+    package actors
+    {
+        class Actor{
+            - Sprite sprite = new Sprite.Builder().build();
+            - boolean visible = true;
+            - int x = 0;
+            - int y = 0;
+            - int z = 0;
+            - double xScale = 1.0;
+            - double yScale = 1.0;
+
+            # Actor(Builder builder) 
+            + int getX() 
+            + int getY() 
+            + int getZ() 
+            + boolean getVisible() 
+            + double getXScale()
+            + double getYScale() 
+            + Sprite getSprite()
+            + void setYScale(double yScale) 
+            + void setXScale(double xScale) 
+            + void setVisible(boolean visible) 
+            + void setSprite(Sprite sprite) 
+            + void setPosition(int x, int y, int z) 
+            + void draw(Graphics graphics)
+            + void onReleasedKey(KeyEvent event) 
+            + void onClick(MouseEvent event)
+            + void onTick() 
+
+        } 
+
+        'Inheritance'
+        Actor <|-- Button 
+
+        'Composition'
+        Sprite *-- Actor
+
+        class Actor_Builder <<static inner>> {
+            - Sprite sprite
+            - boolean visible
+            - int x
+            - int y
+            - int z
+            - double xScale
+            - double yScale
+            + Builder sprite(Sprite sprite) 
+            + Builder visible(boolean visible)
+            + Builder position(int x, int y, int z)
+            + Builder scale(double xScale, double yScale)
+            + Actor build()
+        }
+
+        Actor .. Actor_Builder
+
+        class Button{ 
+            - Command action
+            # Button(Builder builder)
+            + void setAction(Command action)
+            + void onClick(MouseEvent e)
+        }
+
+        class Button_Builder <<static inner>> {
+            - Command action
+            + Builder action(Command action)
+            + Builder sprite(Sprite sprite)
+            + Button build()
+        }  
+
+        Actor_Builder <|-- Button_Builder
+        Button .. Button_Builder
+        Button o-- Command
+
+
+
+        class Room{
+            - List<Actor> actors;
+            # Room(Builder builder)
+            + void addActor(Actor actor, int x, int y, int z)
+            + void addActor(Actor actor)
+            + void removeActor(Actor actor)
+            + List<Actor> getActors() 
+            + void setPosition(int x, int y, int z)
+            + void draw(Graphics graphics)
+            + void onReleasedKey(KeyEvent event)
+            + void onClick(MouseEvent event)
+            + void onTick()
+        }
+
+        Actor <|-- Room
+
+        class Room_Builder <<static inner>> {
+            + Room build()
+        } 
+
+        Actor_Builder <|-- Room_Builder
+        Room .. Room_Builder
+    }
+
+    package sprites{
+        class Animation{
+            - List<BufferedImage> imageSheet;
+            - int frameDelay;
+            - int frameIndex;
+            - int frameCounter;
+            # Animation(Builder builder) 
+            + void onTick()
+        }
+
+        class Animation_Builder <<static inner>> {
+            - String imagePath;
+            - int spriteWidth = 1;
+            - int spriteHeight = 1;
+            - int frameDelay = 6;
+            + Builder imageSheet(String imagePath)
+            + Builder spriteWidth(int spriteWidth)
+            + Builder spriteHeight(int spriteHeight)
+            + Builder frameDelay(int frameDelay)
+            + Animation build() 
+        }
+
+        Sprite <|-- Animation
+        Sprite_Builder <|-- Animation_Builder
+        Animation .. Animation_Builder
+
+        class Sprite{
+            - BufferedImage image;
+            - int originX;
+            - int originY; 
+            # Sprite(Builder builder)
+            + int getOriginX()
+            + int getOriginY()
+            + BufferedImage getImage()
+            + void setImage(BufferedImage image)
+            + void onTick()
+        }
+
+        class Sprite_Builder <<static inner>> {
+            # BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+            # int originX = 0;
+            # int originY = 0;
+            + Builder image(String imagePath) 
+            + Builder originX(int originX)
+            + Builder originY(int originY) 
+            + Sprite build() 
+        }
+            
+        Sprite .. Sprite_Builder
+
+        class Text{
+            - Color color;
+            - Font font;
+            - String text; 
+            # Text(Builder builder)
+            + void setText(String text)
+            + void setColor(Color newColor)
+            + String getText() 
+        }
+
+        class Text_Builder <<static inner>> {
+            - String text = " ";
+            - Color color = Color.BLACK;
+            - int size = 20;
+            - Font font;
+            + Builder()
+            + Builder text(String text)
+            + Builder color(Color color)
+            + Builder fontSize(int size)
+            + Builder fontPath(String fontPath)
+            + Text build()
+        }
+
+        Sprite <|-- Text
+        Sprite_Builder <|-- Text_Builder
+        Text .. Text_Builder
+    }
+
+    interface Command{
+        + Command
+    }
+
+    class Manager{
+        - static Manager instance = null; 
+        - final Random random;
+        - final Room room;
+        - Manager() 
+        + static Manager get()
+        + Random getRandom() 
+        + Room getRoom()  
+        # void paintComponent(Graphics graphics) 
+    }
+
+    'algo com Random aqui"
+    Room o-- Manager
+}
+
+package game{
+    package actors{
+        package battle{
+
+            class ActionMenu{
+                - static final Sprite BACKGROUND = new Sprite.Builder().image("assets/gui/battle/ActionsBox.png").build();
+                - final Button fightButton;
+                - final Button switchButton;
+                - final Button bagButton;
+                - final Button runButton;
+                - final Text text;
+
+                + ActionMenu(Builder builder, Battle battle)
+                + void setText(String string)
+                + static String getIdleText(Pokemon pokemon)
+            }
+
+            Room <|-- ActionMenu
+
+            class ActionTexts{
+                - static final Sprite background = new Sprite.Builder().image("assets/gui/battle/TextsBox.png").build();
+                - final Text topText = new Text.Builder().fontSize(19).build(); 
+                - final Text bottomText = new Text.Builder().fontSize(19).build(); 
+
+                + ActionTexts(Builder builder)
+                + void setTopText(String text)
+                + void setBottomText(String text)
+                + static String getActionText(Pokemon pokemon)
+                + static String getCaptureMessage(Pokemon pokemon)
+                + static String getCaptureFailureMessage(Pokemon pokemon, double captureChance, double randomValue)
+                + static String getAttackText(Pokemon attacker, Move move) 
+                + static String getEncounterText(Pokemon pokemon)
+
+            }
+
+            Room <|-- ActionTexts
+
+            class Battle{
+                - static final int DELAY_TICKS = 60;
+                - final World world;
+                - final Trainer trainer;
+                - final Pokemon opponentPokemon;
+                - int turnCD;
+                - final ActionTexts actionTexts = new ActionTexts(new Room.Builder());
+                - final ActionMenu actionMenu = new ActionMenu(new Room.Builder(), this);
+                - final MovesMenu movesMenu = new MovesMenu(new Room.Builder(), this);
+                - final PartyMenu partyMenu = new PartyMenu(new Room.Builder(), this);
+                - final Actor mainBattleSprite  = new Actor.Builder().scale(-4, 4).build();
+                - final PokemonInfo mainPokemonInfo = new PokemonInfo(new Room.Builder());
+                - final Actor opponentBattleSprite  = new Actor.Builder().scale(4, 4).build();
+                - final PokemonInfo opponentPokemonInfo = new PokemonInfo(new Room.Builder());
+
+                + Battle(Builder builder, World world, Trainer trainer, Pokemon opponentPokemon)
+                + void onTick()
+                + Trainer getTrainer() 
+                + Pokemon getOpponentPokemon() 
+                + ActionMenu getActionMenu() 
+                + PokemonInfo getOpponentPokemonInfo() 
+                + ActionTexts getActionTexts() 
+                + PartyMenu getPartyMenu() 
+                + MovesMenu getMovesMenu() 
+                + static void attack(Pokemon attacker, Pokemon target, Move move)
+                + void swap(int partyIndex)
+                + void capture()
+                + void exit()
+
+            }
+
+            'Composition'
+            PartyMenu o-- Battle
+            Actor o-- Battle
+            PokemonInfo o-- Battle
+            MovesMenu o-- Battle
+            ActionMenu o-- Battle
+            ActionTexts o-- Battle
+            Trainer o-- Battle
+            Pokemon o-- Battle
+
+            'Inheritance'
+            Room <|-- Battle
+
+            class MovesMenu{
+                - static final Sprite BACKGROUND = new Sprite.Builder().image("assets/gui/battle/MovesBox.png").build();
+                - final Text energy;
+                - final Button exitButton;
+                - final Text[] moveTexts = new Text[3];
+                - final Button[] moveButtons = new Button[3];
+
+                + MovesMenu(Builder builder, Battle battle)
+                + void refresh(Battle battle)
+                - static void setButtonText(Button button, Text text, Move move, Pokemon attacker) 
+            }
+
+            'Composition'
+            Actor o-- MovesMenu
+            Button o-- MovesMenu
+            Sprite o-- MovesMenu
+            Text o-- MovesMenu
+            Pokemon o-- MovesMenu
+            Move o-- MovesMenu
+
+            'Inheritance'
+            Room <|-- MovesMenu
+
+            class PartyMenu{
+                - static final Sprite BACKGROUND = new Sprite.Builder().image("assets/gui/battle/ActionsBox.png").build();
+                - final Text text;
+                - final Text[] slotTexts = new Text[5];
+                - final Button[] slotButtons = new Button[5];
+                - final Button exitButton;
+
+                + PartyMenu(Builder builder, Battle battle) 
+                + void refresh(Battle battle) 
+            }
+
+            'Composition'
+            Actor o-- PartyMenu
+            Button o-- PartyMenu
+            Sprite o-- PartyMenu
+            Text o-- PartyMenu
+            Pokemon o-- PartyMenu
+            Trainer o-- PartyMenu
+
+            'Inheritance'
+            Room <|-- PartyMenu
+                
+            
+
+            class PokemonInfo{
+                - static final Sprite BACKGROUND = new Sprite.Builder().image("assets/gui/battle/Bar.png").build();
+                - final Text nameText;
+                - final Text levelText;
+                - final Text hpText;
+
+                + PokemonInfo(Builder builder)
+                + void setPokemon(Pokemon pokemon)
+            }
+
+            'Composition'
+            Actor o-- PokemonInfo
+            Sprite o-- PokemonInfo
+            Text o-- PokemonInfo
+            Pokemon o-- PokemonInfo
+
+            'Inheritance'
+            Room <|-- PokemonInfo
+        }
+
+        package world{
+
+            class SearchCommand{
+                - final World world;
+                - final int row;
+                - final int col;
+
+                + SearchCommand(World world, int row, int col)
+                + void execute()
+
+            }
+
+            'Implements'
+            Command <|.. SearchCommand
+
+            class SwapCommand{
+                - final World world;
+                - final int index;
+
+                + SwapCommand(World world, int index)
+                + void execute()
+            }
+
+            'Implements'
+            Command <|.. SwapCommand
+
+            'Composition"
+            Trainer o-- SwapCommand
+
+            class World{
+                - ArrayList<Tile> tiles;
+                - Trainer player;
+                - Trainer opponent;
+                - int selectedIndex;
+                - final Actor arrowActor;
+                - final Button[] pokemonSlots;
+                - final Button[][] gridButtons;
+                - final Text scoreText;
+                - final Button bagButton;
+                - final Button saveButton;
+                - final Button exitButton;
+                - static final Sprite SCORE_BACKGROUND = new Sprite.Builder().image("assets/gui/world/Score.png").build();
+                - static final Sprite STAR = new Sprite.Builder().image("assets/gui/world/Hint.png").build();
+                - static final Sprite SAVE = new Sprite.Builder().image("assets/gui/world/Save.png").build();
+                - static final Sprite EXIT = new Sprite.Builder().image("assets/gui/world/Exit.png").build();
+                - static final Sprite PARTY_BOX = new Sprite.Builder().image("assets/gui/world/Actions.png").build();
+                - static final Sprite ARROW = new Sprite.Builder().image("assets/gui/world/Arrow.png").build();
+
+                + World(Builder builder, Trainer player, Trainer opponent, Intro intro)
+                + void setText(Trainer player, Trainer opponent)
+                + ArrayList<Tile> getTiles() { return tiles; }
+                + Trainer getPlayer() { return player; }
+                + Trainer getOpponent() { return opponent; }
+                + int getSelectedIndex() { return selectedIndex; }
+                + void setSelectedIndex(int selectedIndex) { this.selectedIndex = selectedIndex; }
+                + void updateParty()
+                + void search(Trainer trainer, int row, int col)
+                + void refresh()
+                + void generateBoard(int rows, int cols)
+            }
+
+            'Inheritance'
+            Room <|-- World
+
+            'Composition'
+            Manager *-- World
+            Actor *-- World
+            Button *-- World 
+            Sprite *-- World
+            Text *-- World
+            Pokemon *-- World
+            Tile *-- World
+            Trainer *-- World 
+            Battle *-- World
+            
+            'Aggregation'
+            Intro o-- World
+            Pokedex o-- World
+            Type o-- World 
+        }
+
+        class Gameboy{
+            - static final Sprite LONG_BUTTON = new Sprite.Builder().image("assets/gui/gameboy/Long.png").build();
+            - static final Sprite ROUND_BUTTON = new Sprite.Builder().image("assets/gui/gameboy/Round.png").build();
+            - static final Sprite VISOR = new Sprite.Builder().image("assets/gui/gameboy/Visor.png").build();
+            - static final Sprite DPAD = new Sprite.Builder().image("assets/gui/gameboy/Dpad.png").build();
+
+            + Gameboy(Builder builder)
+        }
+
+        'Inheritance'
+        Room <|-- Gameboy
+
+        'Composition'
+        Actor *-- Gameboy
+        Sprite *-- Gameboy
+
+        class Intro{
+            - final Button button1;
+            - final Button button2;
+            - final Button button3;
+            - final Button button4;
+
+            + Intro(Builder builder)
+        }
+
+        'Inheritance'
+        Room <|-- Intro
+
+        'Composition'
+        Actor *-- Intro
+        Sprite *-- Intro
+        Manager *-- Intro 
+        Text *-- Intro
+        World *-- Intro
+
+        'Aggregation'
+        Button o-- Intro
+        Animation o-- Intro
+        Pokemon o-- Intro
+        Trainer o-- Intro
+        Pokedex o-- Intro
+    }
+
+
+    package datas{
+
+        class Data{
+            + static NodeList loadXML(String filePath, String tagName)
+        }
+
+        class Level{
+            - static NodeList levelList = Data.loadXML("assets/Levels.xml", "level");
+
+            + static ArrayList<Tile> get(String name)
+        }
+
+        class Move{
+            - static NodeList moveList = Data.loadXML("assets/Moves.xml", "move");
+            - String name;
+            - Type type;
+            - int power;
+            - int energy;
+            - int cooldown;
+            - boolean isCharged;
+
+            - Move(String name, Type type, int power, int energy, int cooldown, boolean isCharged) 
+            + String getName() 
+            + Type getType() 
+            + int getPower() 
+            + int getEnergy() 
+            + boolean isCharged() 
+            + int getCooldown() 
+            + static Move get(String name)
+        }
+
+        class Pokedex{
+            - static final ArrayList<Pokedex> entries = new ArrayList<>();
+            - String id;
+            - String name;
+            - Type mainType;
+            - Type secondaryType;
+            - int baseHp;
+            - int baseAttack;
+            - int baseDefense;
+            - Move fastMove;
+            - Move chargedMove;
+            - Move optionalMove;
+            - int levelToEvolve;
+            - String pokemonToEvolve;
+            - int catchRate;
+            - int baseExp;
+
+            - Pokedex(String id, String name, Type mainType, Type secondaryType, int baseHp,
+                                int baseAttack, int baseDefense, Move fastMove, Move chargedMove, Move optionalMove,
+                                int levelToEvolve, String pokemonToEvolve, int catchRate, int baseExp)
+            + static ArrayList<Pokedex> get()
+            + static Pokedex get(String name)
+            + String getId() 
+            + String getName() 
+            + Type getMainType() 
+            + Type getSecondaryType() 
+            + int getBaseHp() 
+            + int getBaseAttack() 
+            + int getBaseDefense() 
+            + Move getFastMove() 
+            + Move getChargedMove() 
+            + Move getOptionalMove() 
+            + int getLevelToEvolve() 
+            + String getPokemonToEvolve()
+            + int getCatchRate() 
+            + int getBaseExp() 
+            +Sprite getSpriteSheet()
+        }
+
+        'Composition'
+        Sprite *-- Pokedex
+        
+        'Aggregation'
+        Animation o-- Pokedex
+
+        class Type{
+            - static final ArrayList<Type> entries = new ArrayList<>();
+            - static NodeList typeList = Data.loadXML("assets/Types.xml", "type");
+            - String name;
+            - Map<String, Double> resistances;
+
+            - Type(String name, Map<String, Double> resistances)
+            + String getName() { return name; }
+            + Map<String, Double> getResistances() { return resistances; }
+            + Sprite getSprite() { return new Sprite.Builder().image("assets/types/tiles/" + name + ".png").build();
+            + static ArrayList<Type> get()
+            + static Type get(String name)
+            + static ArrayList<Type> getAllTypes()
+        }
+
+        'Composition'
+        Sprite *-- Type 
+    }
+
+    class Pokemon{
+        - static final double[] LEVEL_SCALARS = { 
+            0.094000000, 0.166397870, 0.215732470, 0.255720050, 0.290249880, 
+            0.321087600, 0.349212680, 0.375235590, 0.399567280, 0.422500010, 
+            0.443107550, 0.462798390, 0.481684950, 0.499858440, 0.517393950, 
+            0.534354330, 0.550792690, 0.566754520, 0.582278910, 0.597400010, 
+            0.612157290, 0.626567130, 0.640652950, 0.654435630, 0.667934000, 
+            0.681164920, 0.694143650, 0.706884210, 0.719399090, 0.731700000, 
+            0.743789430, 0.755685510, 0.767397170, 0.778932750, 0.790300010, 
+            0.801496010, 0.812534010, 0.823416010, 0.834144010, 0.844720010, 
+            0.795300010, 0.800300010, 0.805300010, 0.810300010, 0.815300010, 
+            0.820300010, 0.825300010, 0.830300010, 0.835300010, 0.840300010  
+        };
+        - Pokedex stats;
+        - final int ivHp;
+        - final int ivAttack;
+        - final int ivDefense;
+        - int hp;
+        - int attack;
+        - int defense;
+        - int score;
+        - int level;
+        - int exp;
+        - Trainer trainer;
+        - int currentHP;
+        - int currentMP;
+        - int currentCD;
+
+        + Pokemon(Pokedex stats)
+        + int getCurrentCD() 
+        + int getCurrentHP() 
+        + int getCurrentMP() 
+        + Trainer getTrainer() 
+        + Pokedex getStats() 
+        + int getScore() 
+        + int getHp() 
+        + int getAttack() 
+        + int getDefense() 
+        + int getLevel() 
+        + void setCurrentCD(int currentCD) 
+        + void setCurrentHP(int currentHP) 
+        + void setCurrentMP(int currentMP) 
+        + void setTrainer(Trainer trainer) 
+        + void setLevel(int newLevel)
+        + void addExperience(int exp)
+        + static int calculateDamage(Pokemon attacker, Pokemon target, Move move)
+        + static int calculateXP(Pokemon pokemon)
+        + static double calculateTypeMultiplier(Type attack, Type defenderMain, Type defenderSecondary)
+        + static double calculateCaptureChance(Pokemon pokemon)
+        + static Pokemon generateBasePokemon(Type type) 
+    }
+
+    'Composition'
+    Manager *-- Pokemon
+    Move *-- Pokemon
+    Type *-- Pokemon
+
+    'Agregation'
+    Pokedex o-- Pokemon
+
+    class Tile{
+        + Pokemon pokemon;
+        + Type type;
+        + int col;
+        + int row;
+        + boolean showPokemon;
+
+        + Tile(Pokemon pokemon, Type type, int col, int row)
+        + Pokemon getPokemon()
+        + Type getType()
+        + int getCol()
+        + int getRow()
+        + void setPokemon(Pokemon pokemon)
+        + void setType(Type type)
+        + void setCol(int col)
+        + void setRow(int row)
+    }
+
+    'Composition'
+    Type *-- Tile
+
+    class Trainer{
+        - static final int MAX_TEAM_SIZE = 6;
+        - ArrayList<Pokemon> team;
+        - final boolean isNpc;
+        - boolean isOnBattle;
+
+        + Trainer(boolean isNpc)
+        + boolean isTeamFull()
+        + void swapPokemon(int indexA, int indexB) 
+        + Pokemon getPokemon(int index)
+        + void addPokemon(Pokemon pokemon)
+        + void removePokemon(Pokemon pokemon)
+        + int getScore()
+        + boolean isNpc()
+        + boolean isOnBattle()
+        + ArrayList<Pokemon> getTeam()
+    }
+}
+
+class App{
+    + Intro intro = new Intro(new Room.Builder());
+    + Gameboy gameboy = new Gameboy(new Room.Builder());
+    + Room mainRoom = Manager.get().getRoom();
+    + JFrame frame = new JFrame("JavaxDungeon");
+
+    + static void main(String[] args)
+}
+
+'Composition'
+Manager *-- App
+Room *-- App
+Gameboy *-- App
+Intro *-- App
+
+@enduml
