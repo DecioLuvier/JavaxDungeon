@@ -59,12 +59,20 @@ This is the resulting class diagram of the program, designed using the PlantUML 
 
 # ***Run the Program***
 
+<marquee behavior="scroll" direction="right" scrollamount="10">
+  <img src="gif/pikachuWalk.gif" width="120">
+</marquee>
+
+Run the program through an IDE with JAVA extension or compile the .java files and create a bytecode file run on it.
+
 # ***Examples of use***
 
 ## **Initial Screen**
-<div style="display: flex; align-items: center; gap: 10px;">
-  <div style="flex: 1;">
-  <p>
+
+<table>
+  <tr>
+    <td width="60%">
+    <p>
   The home screen features a retro Game Boy-inspired layout, with blue borders and digital buttons reminiscent of the classic handheld console. In the center, the Pokémon UFPEL Version logo is prominently displayed, accompanied by a mysterious purple Pokémon silhouette, conveying an air of mystery and challenge.
 
   At the bottom of the screen, the main menu offers four options:
@@ -79,76 +87,99 @@ This is the resulting class diagram of the program, designed using the PlantUML 
 
   The design evokes the aesthetics of the franchise's classic games, conveying nostalgia and authenticity to players right from the start.
   </p>
-
-  </div>
-  <div style="flex: 1;">
-    <img src="images/BeginScreen.png" alt="Initial Screen" style="max-width: 100%;">
-  </div>
-</div>
+    </td>
+    <td width="40%">
+      <img src="images/BeginScreen.png" alt="BeginScreen" width="200">
+    </td>
+  </tr>
+</table>
 
 ## **Grid Screen** 
 
-<div style="display: flex; align-items: center; gap: 10px; flex-direction: row-reverse;">
-  <div style="flex: 1;">
-    <p>
-    This is the game board screen. The board itself is represented by blocks where there may or may not be a hidden Pokémon. This will be the dynamic of the game where the player will be competing against the computer to find all the Pokémon hidden on the board and, at the end, comparing the number of Pokémon caught between the player and the computer to decide the winner.
-      <br><br>
-      There are also two other information sections, located at the top is the player statistics screen and on the side is the user's pokedex.
-    </p>
-  </div>
-  <div style="flex: 1;">
-    <img src="images/GridScreen.png" alt="GridScreen" style="max-width: 100%;">
-  </div>
-</div>
+<table>
+  <tr>
+    <td width="40%">
+      <img src="images/GridScreen.png" alt="GridScreen" width="200">
+    </td>
+    <td width="60%">
+      <p>
+        This is the game board screen. The board itself is represented by blocks where there may or may not be a hidden Pokémon. This will be the dynamic of the game where the player will be competing against the computer to find all the Pokémon hidden on the board and, at the end, comparing the number of Pokémon caught between the player and the computer to decide the winner.
+        <br><br>
+        There are also two other information sections, located at the top is the player statistics screen and on the side is the user's pokedex.
+      </p>
+    </td>
+  </tr>
+</table>
+
 
 ## **Player Status**
 
-<div style="display: flex; align-items: center; gap: 10px;">
-  <div style="flex: 1;">
+<table>
+  <tr>
+    <td width="60%">
     <p>
-    This is the game board screen. The board itself is represented by blocks where there may or may not be a hidden Pokémon. This will be the dynamic of the game where the player will be competing against the computer to find all the Pokémon hidden on the board and, at the end, comparing the number of Pokémon caught between the player and the computer to decide the winner.
-      <br><br>
-      There are also two other information sections, located at the top is the player statistics screen and on the side is the user's pokedex.
-    </p>
-  </div>
-  <div style="flex: 1;">
-    <img src="images/PlayerStatusScreen.png" alt="Player Status Screen" style="max-width: 100%;">
-  </div>
-</div>
+  This is the player status window in it shows the amount of pokemons captured by both the player and the computer, in addition to this data there are also three specific icons 
+  <br></br>
+  💾 : Save the game <br>
+  ⭐️ : Receive a tip <br>
+  ↩️ : Back to main menu <br>
+  </p>
+    </td>
+    <td width="40%">
+      <img src="images/PlayerStatusScreen.png" alt="PlayerStatus" width="200">
+    </td>
+  </tr>
+</table>
 
 ## **Pokedex**
 
-<div style="display: flex; align-items: center; gap: 10px; flex-direction: row-reverse;">
-  <div style="flex: 1;">
+<table>
+  <tr>
+    <td width="60%">
     <p>
-    This is the game board screen. The board itself is represented by blocks where there may or may not be a hidden Pokémon. This will be the dynamic of the game where the player will be competing against the computer to find all the Pokémon hidden on the board and, at the end, comparing the number of Pokémon caught between the player and the computer to decide the winner.
-      <br><br>
-      There are also two other information sections, located at the top is the player statistics screen and on the side is the user's pokedex.
+    This is the player's pokedex tab in it appear the player's pokemons having a maximum amount of 6 pokemons and can change their order in your team being the pokemon that is more to the top of pokedex your main pokemon and that will start in battle 
     </p>
-  </div>
-  <div style="flex: 1;">
-    <img src="images/PokemonInfoScreen.png" alt="Pokedex Screen" style="max-width: 100%;">
-  </div>
-</div>
+    </td>
+    <td width="40%">
+      <img src="images/PokemonInfoScreen.png" alt="PokemonInfo" width="50">
+    </td>
+  </tr>
+</table>
 
 # **Battle** 
 
-<div style="display: flex; align-items: center; gap: 10px;">
-  <div style="flex: 1;">
+<table>
+  <tr>
+    <td width="60%">
     <p>
-    This is the game board screen. The board itself is represented by blocks where there may or may not be a hidden Pokémon. This will be the dynamic of the game where the player will be competing against the computer to find all the Pokémon hidden on the board and, at the end, comparing the number of Pokémon caught between the player and the computer to decide the winner.
-      <br><br>
-      There are also two other information sections, located at the top is the player statistics screen and on the side is the user's pokedex.
+  When you find a pokemon on the board you will be directed to battle, it is practically the same as a classic pokemon game having the options of FIGHT, PKM, BALL and RUN, the only difference compared to the battles of the classic games and that the fight does not occur in turns but sequentially live making the player choose his options during the battle 
+
+  <b>FIGHT</b> : Choose the pokemon skill <br>
+
+  <b>PKM</b>: Pokemon exchange <br>
+
+  <b>BALL</b>: Play pokeball to capture wild pokemon <br>
+
+  <b>RUN</b> : Out of battle <br>
     </p>
-  </div>
-  <div style="flex: 1;">
-    <img src="images/BattleScreen.png" alt="Battle Screen" style="max-width: 100%;">
-  </div>
-</div>
+    </td>
+    <td width="40%">
+      <img src="images/BattleScreen.png" alt="Battle" width="200">
+    </td>
+  </tr>
+</table>
 
 
 
 
 # ***Difficulties***
 
+The greatest difficulty of the work was the structuring based on a design pattern 
+
 # ***Conclusion***
+
+Finally this work provides a program in pokemon theme for the community to have fun and analyze the structured code, using concepts learned in OOP classes efficiently in order to optimize the program and especially work with the main concept of the JAVA language "code reuse".
+
+For those of you playing, feel free to explore the game's features and the code itself!
+
+![endImage](images/endImage.jpg)
