@@ -1,54 +1,53 @@
 package engine.sprites;
 
 import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
 public class Sprite {
     private BufferedImage image;
-    private final int originX;
-    private final int originY;
+    private int originX;
+    private int originY;
 
-    public Sprite(String imagePath, int originX, int originY) {
-        setImage(imagePath);
-        this.originX = originX;
-        this.originY = originY;
+    protected Sprite(Builder builder) {
+        this.image = builder.image;
+        this.originX = builder.originX;
+        this.originY = builder.originY;
     }
-
-    public Sprite(String imagePath) {
-        setImage(imagePath);
-        this.originX = 0;
-        this.originY = 0;
-    }
-
-    public Sprite(int originX, int originY) {
-        this.image = null;
-        this.originX = originX;
-        this.originY = originY;
-    }
-
-    public Sprite() {
-        this.image = null;
-        this.originX = 0;
-        this.originY = 0;
-    }
-
 
     public int getOriginX() { return originX; }
     public int getOriginY() { return originY; }
     public BufferedImage getImage() { return image; }
-
     public void setImage(BufferedImage image) { this.image = image; }
-    public void setImage(String imagePath) {
-        try {
-            this.image = ImageIO.read(new File(imagePath)); 
-        } catch (IOException e) {
-            e.printStackTrace();
-            this.image = null;
+    public void onTick() {}
+
+    public static class Builder {
+        protected BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        protected int originX = 0;
+        protected int originY = 0;
+
+        public Builder image(String imagePath) {
+            try {
+                this.image = ImageIO.read(new File(imagePath));
+            } catch (IOException e) {
+                System.out.println("Failed to load image from path: " + imagePath + ". Reason: " + e.getMessage());
+            }
+            return this;
+        }
+
+        public Builder originX(int originX) {
+            this.originX = originX;
+            return this;
+        }
+
+        public Builder originY(int originY) {
+            this.originY = originY;
+            return this;
+        }
+
+        public Sprite build() {
+            return new Sprite(this);
         }
     }
-
-    public void onTick() { }
 }

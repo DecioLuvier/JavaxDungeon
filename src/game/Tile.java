@@ -7,6 +7,7 @@ public class Tile {
     Type type;
     int col;
     int row;
+    boolean showPokemon;
     
     public Tile(Pokemon pokemon, Type type, int col, int row){
         this.pokemon = pokemon;

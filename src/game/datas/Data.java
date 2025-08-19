@@ -16,7 +16,6 @@ public final class Data {
             return doc.getElementsByTagName(tagName);
         } catch (Exception e) {
             System.err.println("Error loading data from XML: " + e.getMessage());
-            e.printStackTrace();
             return null;
         }
     }

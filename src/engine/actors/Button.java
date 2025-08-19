@@ -3,21 +3,23 @@ package engine.actors;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import engine.Manager;
-import engine.Room;
-import engine.Surface;
+import engine.Command;
 import engine.sprites.Sprite;
 
 public class Button extends Actor {
-    private Runnable action;
+    private Command action;
 
-    public Button(Sprite animation, Runnable action) {
-        super(animation, 1, 1);
-        this.action = action;
+    protected Button(Builder builder) {
+        super(builder);
+        this.action = builder.action;
+    }
+
+    public void setAction(Command action) { 
+        this.action = action; 
     }
 
     @Override
-    public void onClick(Manager manager, Room room, Surface surface, MouseEvent e) {
+    public void onClick(MouseEvent e) {
         double xScale = super.getXScale();
         double yScale = super.getYScale();
         Sprite sprite = super.getSprite();
@@ -29,10 +31,8 @@ public class Button extends Actor {
 
         int drawX = getX();
         int drawY = getY();
-        if (xScale < 0)
-            drawX -= scaledWidth;
-        if (yScale < 0)
-            drawY -= scaledHeight;
+        if (xScale < 0) drawX -= scaledWidth;
+        if (yScale < 0) drawY -= scaledHeight;
 
         drawX -= sprite.getOriginX();
         drawY -= sprite.getOriginY();
@@ -40,12 +40,28 @@ public class Button extends Actor {
         double mouseX = e.getX();
         double mouseY = e.getY();
 
-        if (mouseX >= drawX && mouseX < drawX + scaledWidth && mouseY >= drawY && mouseY < drawY + scaledHeight)
-            if (action != null) 
-                action.run();
+        if (mouseX >= drawX && mouseX < drawX + scaledWidth &&
+            mouseY >= drawY && mouseY < drawY + scaledHeight) {
+            if (action != null) action.execute();
+        }
     }
 
-    public void setAction(Runnable action) {
-        this.action = action;
+    public static class Builder extends Actor.Builder {
+        private Command action;
+
+        public Builder action(Command action) {
+            this.action = action;
+            return this;
+        }
+
+        public Builder sprite(Sprite sprite) {
+            super.sprite(sprite);
+            return this;
+        }
+
+        @Override
+        public Button build() {
+            return new Button(this);
+        }
     }
 }

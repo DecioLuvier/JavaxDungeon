@@ -24,10 +24,6 @@ public class Trainer {
         team.set(indexB, temp);
     }
 
-    public void capturePokemon(Pokemon pokemon) {
-        pokemon.setTrainer(this);
-    }
-
     public Pokemon getPokemon(int index) {
         if (index >= 0 && index < team.size()) 
             return team.get(index);
@@ -35,20 +31,17 @@ public class Trainer {
     }
 
     public void addPokemon(Pokemon pokemon) {
-        if (!isTeamFull() && pokemon != null) 
+        if (!isTeamFull()) 
             team.add(pokemon);
+        pokemon.setTrainer(this);
     }
 
     public void removePokemon(Pokemon pokemon) {
-        if (pokemon != null) 
-            team.remove(pokemon);
+        team.remove(pokemon);
     }
 
     public int getScore(){
-        int score = 0;
-        for(Pokemon pokemon : team)
-            score += pokemon.getScore();
-        return score;
+        return 0;
     }
 
     public boolean isNpc() {
@@ -57,5 +50,9 @@ public class Trainer {
 
     public boolean isOnBattle() {
         return isOnBattle;
+    }
+
+    public ArrayList<Pokemon> getTeam() {
+        return new ArrayList<>(team);
     }
 }

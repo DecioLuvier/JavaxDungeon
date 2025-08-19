@@ -4,11 +4,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import engine.sprites.Sprite;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Type {
+    private static final ArrayList<Type> entries = new ArrayList<>();
     private static NodeList typeList = Data.loadXML("assets/Types.xml", "type");
     private String name;
     private Map<String, Double> resistances;
@@ -20,14 +21,13 @@ public class Type {
 
     public String getName() { return name; }
     public Map<String, Double> getResistances() { return resistances; }
-    public Sprite getSprite() { return new Sprite("assets/types/tiles/" + name + ".png"); }
+    public Sprite getSprite() { return new Sprite.Builder().image("assets/types/tiles/" + name + ".png").build(); }
 
-    public static Type get(String name) {
-        if(name.isEmpty() || name == null)
-            return null;
-        for (int i = 0; i < typeList.getLength(); i++) {
-            Element type = (Element) typeList.item(i);
-            if (type.getAttribute("name").equals(name)) {
+    public static ArrayList<Type> get() {
+        if (entries.size() == 0) {
+            for (int i = 0; i < typeList.getLength(); i++) {
+                Element type = (Element) typeList.item(i);
+                String name = type.getAttribute("name");
                 Map<String, Double> resistances = new HashMap<>();
                 NodeList resistanceList = type.getElementsByTagName("resistance");
                 for (int j = 0; j < resistanceList.getLength(); j++) {
@@ -36,9 +36,22 @@ public class Type {
                     double value = Double.parseDouble(resistance.getAttribute("value"));
                     resistances.put(resistType, value);
                 }
-                return new Type(name, resistances);
+                entries.add(new Type(name, resistances));
             }
         }
+        return entries;
+    }
+
+    public static Type get(String name) {
+        if (name == null || name.isEmpty()) 
+            return null;
+        for (Type t : get()) 
+            if (t.name.equalsIgnoreCase(name)) 
+                return t;
         return null;
+    }
+
+    public static ArrayList<Type> getAllTypes() {
+        return get();
     }
 }
