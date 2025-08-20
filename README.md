@@ -43,6 +43,13 @@ This is the resulting class diagram of the program, designed using the PlantUML 
 >a plantUML extension that already does the job, but I still recommend taking a look
 >at the website to see what the code syntax is like at least.
 
+<br><br>
+An example of a class structure in PlantUML because the program is very large and it is difficult to see in the image above.
+
+ <img src="images/ExampleClass.png" width="250" height="250">
+
+<br><br>
+
 # ***Concepts Used*** <img src="images/emoji/squirtle.png" width="40" height="40">
 
 ✅ - **Composition** <br/> 
