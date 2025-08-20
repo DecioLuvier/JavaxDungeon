@@ -3,14 +3,14 @@ package game.datas;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import engine.Data;
 import engine.sprites.Sprite;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Type {
+public class Type extends Data{
     private static final ArrayList<Type> entries = new ArrayList<>();
-    private static NodeList typeList = Data.loadXML("assets/Types.xml", "type");
     private String name;
     private Map<String, Double> resistances;
 
@@ -25,6 +25,7 @@ public class Type {
 
     public static ArrayList<Type> get() {
         if (entries.size() == 0) {
+            NodeList typeList = Data.loadXML("assets/Types.xml", "type");
             for (int i = 0; i < typeList.getLength(); i++) {
                 Element type = (Element) typeList.item(i);
                 String name = type.getAttribute("name");
@@ -48,6 +49,7 @@ public class Type {
         for (Type t : get()) 
             if (t.name.equalsIgnoreCase(name)) 
                 return t;
+        System.err.println("Type with name " + name + " not found.");
         return null;
     }
 

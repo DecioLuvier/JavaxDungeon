@@ -1,8 +1,9 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Trainer {
+public class Trainer implements Serializable {
     private static final int MAX_TEAM_SIZE = 6;
     private ArrayList<Pokemon> team;
     private final boolean isNpc;
@@ -40,8 +41,11 @@ public class Trainer {
         team.remove(pokemon);
     }
 
-    public int getScore(){
-        return 0;
+    public int getScore() {
+        int score = 0;
+        for (Pokemon pokemon : team) 
+            score += pokemon.getScore();
+        return score;
     }
 
     public boolean isNpc() {
@@ -50,6 +54,10 @@ public class Trainer {
 
     public boolean isOnBattle() {
         return isOnBattle;
+    }
+
+    public void setOnBattle(boolean isOnBattle) {
+        this.isOnBattle = isOnBattle;
     }
 
     public ArrayList<Pokemon> getTeam() {

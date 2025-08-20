@@ -1,5 +1,6 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -10,7 +11,7 @@ import game.datas.Move;
 import game.datas.Pokedex;
 import game.datas.Type;
 
-public class Pokemon  {
+public class Pokemon implements Serializable {
     // pokemongo.fandom.com/wiki/Combat_Power
     private static final double[] LEVEL_SCALARS = { 
         0.094000000, 0.166397870, 0.215732470, 0.255720050, 0.290249880, //01-05
@@ -38,6 +39,7 @@ public class Pokemon  {
 	private int currentHP;
 	private int currentMP;
 	private int currentCD;
+    private boolean isOnBattle;
 
     public Pokemon(Pokedex stats) {
         this.stats = stats;
@@ -50,7 +52,9 @@ public class Pokemon  {
         this.currentCD = 0;
 		this.level = 0;
 		this.trainer = null;
-		addExperience(0);
+        this.isOnBattle = false;
+		addExperience(5);
+
     } 
 
     public int getCurrentCD() { return currentCD; }
@@ -67,6 +71,9 @@ public class Pokemon  {
     public void setCurrentHP(int currentHP) { this.currentHP = currentHP; }
     public void setCurrentMP(int currentMP) { this.currentMP = currentMP; }
     public void setTrainer(Trainer trainer) { this.trainer = trainer; }
+
+    public boolean isOnBattle() { return isOnBattle; }
+    public void setOnBattle(boolean isOnBattle) { this.isOnBattle = isOnBattle; }
 
     public void setLevel(int newLevel) {
         this.level = newLevel;
@@ -86,14 +93,11 @@ public class Pokemon  {
         }
     }
     
-	// Medium Fast - bulbapedia.bulbagarden.net/wiki/exp
     public void addExperience(int exp) {
         this.exp += exp;
-        int expForNextLevel = level * level * level; 
-        while (this.exp >= expForNextLevel && level < LEVEL_SCALARS.length) {
-            setLevel(level + 1);
-            expForNextLevel = level * level * level;
-        }
+
+        setLevel((int) this.exp/5);
+
     }
 
     public static int calculateDamage(Pokemon attacker, Pokemon target, Move move) {
@@ -111,12 +115,12 @@ public class Pokemon  {
     }
 
     public static int calculateXP(Pokemon pokemon) {
-        final int baseXP = pokemon.getStats().getBaseExp();
+        final int baseXP = pokemon.getStats().getBaseExp()/10;
         final int level = pokemon.getLevel();
         double trainerBonus = 1.0;
         if (pokemon.getTrainer() != null) 
             trainerBonus = 1.5;
-        return (int) Math.round((baseXP * level / 7.0) * trainerBonus);
+        return (int) Math.round((baseXP + level) * trainerBonus);
     }
 
     public static double calculateTypeMultiplier(Type attack, Type defenderMain, Type defenderSecondary) {
@@ -139,7 +143,6 @@ public class Pokemon  {
     public static Pokemon generateBasePokemon(Type type) {
         Random random = Manager.get().getRandom();
 
-        // 1) Descobrir quem NÃO é base (alvos de evolução)
         Set<String> nonBaseNames = new HashSet<>();
         for (Pokedex p : Pokedex.get()) {
             String evolvesTo = p.getPokemonToEvolve();
@@ -148,21 +151,18 @@ public class Pokemon  {
             }
         }
 
-        // 2) Formas-base = todos que não aparecem como "evolvesTo" de ninguém
         ArrayList<Pokedex> basePokemons = new ArrayList<>();
         for (Pokedex p : Pokedex.get()) {
-            // assumindo que Pokedex tem getName()
+
             if (!nonBaseNames.contains(p.getName())) {
                 basePokemons.add(p);
             }
         }
 
         if (basePokemons.isEmpty()) {
-            // Segurança: se por algum motivo não achar, cai para todos
             basePokemons.addAll(Pokedex.get());
         }
 
-        // 3) Se tiver tipo, filtra por tipo principal/secundário
         ArrayList<Pokedex> filtered = new ArrayList<>();
         if (type != null) {
             for (Pokedex p : basePokemons) {

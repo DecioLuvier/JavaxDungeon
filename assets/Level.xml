@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level>
+
+    <tile col="0" row="0" type="Water" pokemon="Squirtle"/>
+    <tile col="0" row="1" type="Water" pokemon="Psyduck"/>
+    <tile col="0" row="2" type="Water" pokemon="Poliwag"/>
+    <tile col="0" row="3" type="Water" pokemon="Tentacool"/>
+    <tile col="0" row="4" type="Water" pokemon="Slowpoke"/>
+    <tile col="1" row="4" type="Water" pokemon="Magikarp"/>
+    <tile col="2" row="4" type="Water" pokemon="Wartortle"/>
+
+    <tile col="1" row="1" type="Grass" pokemon="Bulbasaur"/>
+    <tile col="1" row="2" type="Grass" pokemon="Oddish"/>
+    <tile col="2" row="1" type="Grass" pokemon="Bellsprout"/>
+    <tile col="2" row="2" type="Grass" pokemon="Exeggcute"/>
+    <tile col="2" row="3" type="Grass" pokemon="Tangela"/>
+
+
+    <tile col="2" row="0" type="Electric" pokemon="Electabuzz"/>
+    <tile col="3" row="0" type="Electric" pokemon="Voltorb"/>
+    <tile col="3" row="1" type="Electric" pokemon="Magnemite"/>
+    <tile col="4" row="0" type="Electric" pokemon="Jolteon"/>
+
+    <tile col="3" row="2" type="Ground" pokemon="Geodude"/>
+    <tile col="3" row="3" type="Ground" pokemon="Diglett"/>
+    <tile col="3" row="4" type="Ground" pokemon="Cubone"/>
+    <tile col="4" row="1" type="Ground" pokemon="Rhyhorn"/>
+    <tile col="4" row="2" type="Ground" pokemon="Onix"/>
+    <tile col="4" row="3" type="Ground" pokemon="Golem"/>
+    <tile col="4" row="4" type="Ground" pokemon="Dugtrio"/>
+</level>

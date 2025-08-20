@@ -1,5 +1,7 @@
 package engine;
 
-public interface Command {
-    void execute();
+import java.io.Serializable;
+
+public abstract class Command implements Serializable {
+    public abstract void execute();
 }

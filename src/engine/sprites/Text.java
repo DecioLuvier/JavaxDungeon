@@ -6,23 +6,30 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.awt.FontFormatException;
 
 public class Text extends Sprite {
+    private transient Font font;
     private Color color;
-    private Font font;
     private String text; 
+    private int size;
+    private String fontPath;
+
 
     protected Text(Builder builder) {
         super(builder);
         this.color = builder.color;
-        this.font = builder.font;
+        this.fontPath = builder.fontPath;
+        this.size = builder.size;
+        this.font = loadFont(fontPath, size);
         this.text = builder.text; 
-        setText(builder.text);
+        update();
     }
     
-    public void setText(String text) {
-        this.text = text; 
+    private void update(){
         String[] lines = text.split("\n");
         BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = tmp.createGraphics();
@@ -44,29 +51,43 @@ public class Text extends Sprite {
         super.setImage(img);
     }
 
-    public void setColor(Color newColor) {
-        this.color = newColor;
-        setText(this.text);
+    public void setText(String text) {
+        this.text = text; 
+        update();
     }
 
-    public String getText() {
-        return this.text;
+    public void setColor(Color newColor) {
+        this.color = newColor;
+        update();
     }
+
+    public static Font loadFont(String fontPath, int fontSize) {
+        try {
+            File fontFile = new File(fontPath);
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, fontFile); 
+            return customFont.deriveFont(Font.PLAIN, (float) fontSize);
+        } catch (FontFormatException | IOException e) {
+            System.err.println("Failed to load default font. Falling back to Serif: " + e.getMessage());
+            return new Font("Serif", Font.PLAIN, fontSize);
+        }
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        this.font = loadFont(fontPath, size);
+        update();
+    }
+
 
     public static class Builder extends Sprite.Builder {
         private String text = " ";
         private Color color = Color.BLACK;
         private int size = 20;
-        private Font font;
-
-        public Builder() {
-            try {
-                this.font = Font.createFont(Font.TRUETYPE_FONT, new File("assets/fonts/FontPKMN.ttf")).deriveFont(Font.PLAIN, (float) size);
-            } catch (FontFormatException | IOException e) {
-                System.err.println("Failed to load default font. Falling back to Serif: " + e.getMessage());
-                this.font = new Font("Serif", Font.PLAIN, size);
-            }
-        }
+        private String fontPath = "assets/fonts/FontPKMN.ttf";
 
         public Builder text(String text) {
             this.text = text;
@@ -80,16 +101,11 @@ public class Text extends Sprite {
 
         public Builder fontSize(int size) {
             this.size = size;
-            this.font = font.deriveFont(Font.PLAIN, (float) size);
             return this;
         }
 
         public Builder fontPath(String fontPath) {
-            try {
-                this.font = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)).deriveFont(Font.PLAIN, (float) size);
-            } catch (FontFormatException | IOException e) {
-                System.err.println("Failed to load font from path: " + fontPath + ". Reason: " + e.getMessage());
-            }
+            this.fontPath = fontPath;
             return this;
         }
 

@@ -1,38 +1,53 @@
 package engine.sprites;
 
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Animation extends Sprite {
-    private List<BufferedImage> imageSheet;
+    private transient List<BufferedImage> imageSheet;
+    private String imagePath;
     private int frameDelay;
     private int frameIndex;
     private int frameCounter;
+    private int spriteWidth;
+    private int spriteHeight;
 
     protected Animation(Builder builder) {
         super(builder);
-        this.imageSheet = new ArrayList<>();
         this.frameDelay = builder.frameDelay;
+        this.imagePath = builder.imagePath;
+        this.spriteWidth = builder.spriteWidth;
+        this.spriteHeight = builder.spriteHeight;
+        this.imageSheet = loadSpriteSheet(imagePath, spriteWidth, spriteHeight);
         this.frameIndex = 0;
         this.frameCounter = 0;
+        super.setImage(imageSheet.get(frameIndex));
+    }
 
-        try {
-            BufferedImage spriteSheet = ImageIO.read(new File(builder.imagePath));
-            int sheetWidth = spriteSheet.getWidth();
-            int sheetHeight = spriteSheet.getHeight();
-            int rows = sheetHeight / builder.spriteHeight;
-            int cols = sheetWidth / builder.spriteWidth;
-            for (int y = 0; y < rows; y++) 
-                for (int x = 0; x < cols; x++) 
-                    imageSheet.add(spriteSheet.getSubimage( x * builder.spriteWidth, y * builder.spriteHeight, builder.spriteWidth, builder.spriteHeight));
-        } catch (IOException e) {
-            System.err.println("Falha ao carregar spriteSheet: " + builder.imagePath);
-            e.printStackTrace();
-        }
+    public static ArrayList<BufferedImage> loadSpriteSheet(String imagePath, int spriteWidth, int spriteHeight) {
+        ArrayList<BufferedImage> frames = new ArrayList<>();
+        BufferedImage spriteSheet = loadImage(imagePath);
+        int sheetWidth = spriteSheet.getWidth();
+        int sheetHeight = spriteSheet.getHeight();
+        int rows = sheetHeight / spriteHeight;
+        int cols = sheetWidth / spriteWidth;
+        for (int y = 0; y < rows; y++) 
+            for (int x = 0; x < cols; x++) 
+                frames.add(spriteSheet.getSubimage( x * spriteWidth, y * spriteHeight, spriteWidth, spriteHeight));
+        return frames;
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject(); 
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();  
+        this.imageSheet = loadSpriteSheet(imagePath, spriteWidth, spriteHeight);
         super.setImage(imageSheet.get(frameIndex));
     }
 

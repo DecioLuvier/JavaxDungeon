@@ -1,5 +1,6 @@
 package game.datas;
 
+import engine.Data;
 import engine.sprites.Animation;
 import engine.sprites.Sprite;
 import org.w3c.dom.Element;
@@ -7,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
-public final class Pokedex {
+public final class Pokedex extends Data{
     private static final ArrayList<Pokedex> entries = new ArrayList<>();
 
     private String id;
