@@ -1,8 +1,8 @@
-@startuml Engine
+@startuml src
 
 package engine 
 {
-    package actors
+    package listeners
     {
         class Actor{
             - Sprite sprite = new Sprite.Builder().build();
@@ -34,7 +34,8 @@ package engine
         } 
 
         'Inheritance'
-        Actor <|-- Button 
+        Listerner <|-- Actor
+        Drawable <|.. Actor  
 
         'Composition'
         Sprite *-- Actor
@@ -63,6 +64,8 @@ package engine
             + void onClick(MouseEvent e)
         }
 
+        Actor <|-- Actor
+
         class Button_Builder <<static inner>> {
             - Command action
             + Builder action(Command action)
@@ -74,30 +77,54 @@ package engine
         Button .. Button_Builder
         Button o-- Command
 
+        class Listener{
+            + void onReleasedKey(KeyEvent event) {}
+            + void onClick(MouseEvent event) {}
+            + void onTick() {}
+        }
 
 
-        class Room{
-            - List<Actor> actors;
-            # Room(Builder builder)
-            + void addActor(Actor actor, int x, int y, int z)
-            + void addActor(Actor actor)
-            + void removeActor(Actor actor)
-            + List<Actor> getActors() 
-            + void setPosition(int x, int y, int z)
-            + void draw(Graphics graphics)
+
+        class Surface{
+            - List<Drawable> drawables;
+            - boolean visible;
+            - int x;
+            - int y;
+            - int z;
+            # Surface(Builder builder)
+            + int getX()
+            + int getY()
+            + int getZ()
+            + void add(Drawable drawable, int x, int y, int z)
+            + void add(Drawable drawable)
+            + void remove(Drawable drawable)
+            + boolean getVisible()
+            + void setVisible(boolean visible)
+            + List<Drawable> getDrawables()
+            - List<Listener> getListeners()
             + void onReleasedKey(KeyEvent event)
             + void onClick(MouseEvent event)
             + void onTick()
+            + void draw(Graphics graphics)
+            + void setPosition(int x, int y, int z)
         }
 
-        Actor <|-- Room
+        Listener <|-- Surface
+        Drawable <|.. Surface
 
-        class Room_Builder <<static inner>> {
-            + Room build()
+
+        class Surface_Builder <<static inner>> {
+            - boolean visible = true;
+            - int x = 0;
+            - int y = 0;
+            - int z = 0;
+            + Builder visible(boolean visible)
+            + Builder position(int x, int y, int z) 
+            + Surface build()
         } 
 
-        Actor_Builder <|-- Room_Builder
-        Room .. Room_Builder
+        Surface .. Surface_Builder
+
     }
 
     package sprites{
@@ -185,16 +212,30 @@ package engine
     class Manager{
         - static Manager instance = null; 
         - final Random random;
-        - final Room room;
+        - final Surface Surface;
         - Manager() 
         + static Manager get()
         + Random getRandom() 
-        + Room getRoom()  
+        + Surface getSurface()  
         # void paintComponent(Graphics graphics) 
     }
 
     'algo com Random aqui"
-    Room o-- Manager
+    Surface o-- Manager
+
+    interface Drawable{
+        + int getX();
+        + int getY();
+        + int getZ();
+        + boolean getVisible();
+        + void draw(Graphics graphics);
+        + void setPosition(int x, int y, int z);
+    }
+
+    class Data{
+        + static NodeList loadXML(String filePath, String tagName)
+    }
+
 }
 
 package game{
@@ -214,7 +255,7 @@ package game{
                 + static String getIdleText(Pokemon pokemon)
             }
 
-            Room <|-- ActionMenu
+            Surface <|-- ActionMenu
 
             class ActionTexts{
                 - static final Sprite background = new Sprite.Builder().image("assets/gui/battle/TextsBox.png").build();
@@ -232,7 +273,7 @@ package game{
 
             }
 
-            Room <|-- ActionTexts
+            Surface <|-- ActionTexts
 
             class Battle{
                 - static final int DELAY_TICKS = 60;
@@ -240,14 +281,14 @@ package game{
                 - final Trainer trainer;
                 - final Pokemon opponentPokemon;
                 - int turnCD;
-                - final ActionTexts actionTexts = new ActionTexts(new Room.Builder());
-                - final ActionMenu actionMenu = new ActionMenu(new Room.Builder(), this);
-                - final MovesMenu movesMenu = new MovesMenu(new Room.Builder(), this);
-                - final PartyMenu partyMenu = new PartyMenu(new Room.Builder(), this);
+                - final ActionTexts actionTexts = new ActionTexts(new Surface.Builder());
+                - final ActionMenu actionMenu = new ActionMenu(new Surface.Builder(), this);
+                - final MovesMenu movesMenu = new MovesMenu(new Surface.Builder(), this);
+                - final PartyMenu partyMenu = new PartyMenu(new Surface.Builder(), this);
                 - final Actor mainBattleSprite  = new Actor.Builder().scale(-4, 4).build();
-                - final PokemonInfo mainPokemonInfo = new PokemonInfo(new Room.Builder());
+                - final PokemonInfo mainPokemonInfo = new PokemonInfo(new Surface.Builder());
                 - final Actor opponentBattleSprite  = new Actor.Builder().scale(4, 4).build();
-                - final PokemonInfo opponentPokemonInfo = new PokemonInfo(new Room.Builder());
+                - final PokemonInfo opponentPokemonInfo = new PokemonInfo(new Surface.Builder());
 
                 + Battle(Builder builder, World world, Trainer trainer, Pokemon opponentPokemon)
                 + void onTick()
@@ -276,7 +317,7 @@ package game{
             Pokemon o-- Battle
 
             'Inheritance'
-            Room <|-- Battle
+            Surface <|-- Battle
 
             class MovesMenu{
                 - static final Sprite BACKGROUND = new Sprite.Builder().image("assets/gui/battle/MovesBox.png").build();
@@ -299,7 +340,7 @@ package game{
             Move o-- MovesMenu
 
             'Inheritance'
-            Room <|-- MovesMenu
+            Surface <|-- MovesMenu
 
             class PartyMenu{
                 - static final Sprite BACKGROUND = new Sprite.Builder().image("assets/gui/battle/ActionsBox.png").build();
@@ -321,7 +362,7 @@ package game{
             Trainer o-- PartyMenu
 
             'Inheritance'
-            Room <|-- PartyMenu
+            Surface <|-- PartyMenu
                 
             
 
@@ -342,7 +383,7 @@ package game{
             Pokemon o-- PokemonInfo
 
             'Inheritance'
-            Room <|-- PokemonInfo
+            Surface <|-- PokemonInfo
         }
 
         package world{
@@ -407,7 +448,7 @@ package game{
             }
 
             'Inheritance'
-            Room <|-- World
+            Surface <|-- World
 
             'Composition'
             Manager *-- World
@@ -436,7 +477,7 @@ package game{
         }
 
         'Inheritance'
-        Room <|-- Gameboy
+        Surface <|-- Gameboy
 
         'Composition'
         Actor *-- Gameboy
@@ -452,7 +493,7 @@ package game{
         }
 
         'Inheritance'
-        Room <|-- Intro
+        Surface <|-- Intro
 
         'Composition'
         Actor *-- Intro
@@ -666,9 +707,9 @@ package game{
 }
 
 class App{
-    + Intro intro = new Intro(new Room.Builder());
-    + Gameboy gameboy = new Gameboy(new Room.Builder());
-    + Room mainRoom = Manager.get().getRoom();
+    + Intro intro = new Intro(new Surface.Builder());
+    + Gameboy gameboy = new Gameboy(new Surface.Builder());
+    + Surface mainSurface = Manager.get().getSurface();
     + JFrame frame = new JFrame("JavaxDungeon");
 
     + static void main(String[] args)
@@ -676,7 +717,7 @@ class App{
 
 'Composition'
 Manager *-- App
-Room *-- App
+Surface *-- App
 Gameboy *-- App
 Intro *-- App
 

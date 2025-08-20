@@ -1,10 +1,10 @@
 ![POKEMON](images/Pokemon_logo.png)
 
-# ***Programmers***
+# ***Programmers*** <img src="images/emoji/eevee.png" width="40" height="40">
 - [Lucas Lemes](https://github.com/L3mSv) 
 - [Décio Luvier](https://github.com/DecioLuvier) 
 
- # ***Introduction***
+ # ***Introduction*** <img src="images/emoji/charmander.png" width="40" height="40">
 
 Pokémon is a franchise from The Pokémon Company, created in 1995 by 
 Satoshi Tajiri. The game centers on fictional creatures called “Pokémon”. These 
@@ -31,7 +31,7 @@ like a sport.
 
 
 
-# ***Class Diagram*** 
+# ***Class Diagram*** <img src="images/emoji/chikorita.gif" width="40" height="40">
 This is the resulting class diagram of the program, designed using the PlantUML tool
 
 ![ClassDiagram](images/ClassDiagram.png)
@@ -43,7 +43,7 @@ This is the resulting class diagram of the program, designed using the PlantUML 
 >a plantUML extension that already does the job, but I still recommend taking a look
 >at the website to see what the code syntax is like at least.
 
-# ***Concepts Used***
+# ***Concepts Used*** <img src="images/emoji/squirtle.png" width="40" height="40">
 
 ✅ - **Composition** <br/>
 ✅ - **Inheritance** <br/>
@@ -56,8 +56,10 @@ This is the resulting class diagram of the program, designed using the PlantUML 
 ✅ - **Exception** <br/>
 ✅ - **Abstract Class** <br/> 
 ✅ - **Concurrent programming** <br/>
+✅ - **Serialization** <br/>
 
-# ***Run the Program***
+
+# ***Run the Program*** <img src="images/emoji/snorlax.png" width="40" height="40">
 
 <marquee behavior="scroll" direction="right" scrollamount="10">
   <img src="gif/pikachuWalk.gif" width="120">
@@ -65,9 +67,9 @@ This is the resulting class diagram of the program, designed using the PlantUML 
 
 Run the program through an IDE with JAVA extension or compile the .java files and create a bytecode file run on it.
 
-# ***Examples of use***
+# ***Examples of use*** <img src="images/emoji/psyduck.png" width="40" height="40">
 
-## **Initial Screen**
+## **Initial Screen** 
 
 <table>
   <tr>
@@ -131,17 +133,18 @@ Run the program through an IDE with JAVA extension or compile the .java files an
   </tr>
 </table>
 
-## **Pokedex**
+## **Pokedex** 
+
 
 <table>
   <tr>
+    <td width="40%">
+      <img src="images/PokemonInfoScreen.png" alt="Pokedex" width="50">
+    </td>
     <td width="60%">
     <p>
     This is the player's pokedex tab in it appear the player's pokemons having a maximum amount of 6 pokemons and can change their order in your team being the pokemon that is more to the top of pokedex your main pokemon and that will start in battle 
     </p>
-    </td>
-    <td width="40%">
-      <img src="images/PokemonInfoScreen.png" alt="PokemonInfo" width="50">
     </td>
   </tr>
 </table>
@@ -172,14 +175,32 @@ Run the program through an IDE with JAVA extension or compile the .java files an
 
 
 
-# ***Difficulties***
+# ***Difficulties*** <img src="images/emoji/bulbasaur.png" width="40" height="40">
 
-The greatest difficulty of the work was the structuring based on a design pattern 
+## **Game Logic**
+- **Rooms:** switch between screens (map, battle, inventory, menu, etc.) without bugs.
+- **Battle:** create the Pokémon battle model, including damage calculation, status effects, move priority, types, and resistances.
 
-# ***Conclusion***
+## **Data and Structure**
+- **Pokédex:** store hundreds of Pokémon, their attributes, types, moves and evolutions.
+- **Balancing:** Adjusting statistics so that the game is playable and fair.
+- **Persistence:** saving and loading progress (captured Pokémon).
+
+## **Game World**
+- **Grid:** draw the map of the game board.
+
+## **Technical Aspects**
+- **Performance:** Prevent the game from crashing with too many sprites on screen.
+- **Code organization:** implement Builder and Singleton design patterns.
+- **Testing:** Ensure there are no bugs (softlocks, frozen battles, logic flaws).
+
+# ***Conclusion*** <img src="images/emoji/mew.png" width="40" height="40">
 
 Finally this work provides a program in pokemon theme for the community to have fun and analyze the structured code, using concepts learned in OOP classes efficiently in order to optimize the program and especially work with the main concept of the JAVA language "code reuse".
 
-For those of you playing, feel free to explore the game's features and the code itself!
+_For those of you playing, feel free to explore the game's features and the code itself!_
+<br><br>
 
-![endImage](images/endImage.jpg)
+***GOODBYE!***
+
+![Bye](gif/bye.gif)
