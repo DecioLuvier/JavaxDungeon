@@ -45,18 +45,38 @@ This is the resulting class diagram of the program, designed using the PlantUML 
 
 # ***Concepts Used*** <img src="images/emoji/squirtle.png" width="40" height="40">
 
-✅ - **Composition** <br/>
+✅ - **Composition** <br/> 
+Used in the Type, Tile, Manager, Move classes, and among other classes, taking as an example in the Actor class, composition is used in relation to the Sprite class to show the game's drawings.<br/>
+
 ✅ - **Inheritance** <br/>
-✅ - **Builder Pattern Design** <br/>
-✅ - **Singleton Pattern Design** <br/>
+Used in practically all classes such as Actor, Listener, Button, in the case of Button it is inherited from Actor because every button is an actor within the program logic<br/>
+
+✅ - **Pattern Design** <br/>
+The design patterns used mostly were Builder and Singleton for classes such as Actors, Buttons, Sprites, Text, as they are components that are part of a larger and more complex whole, which facilitates the creation and management of these parts, being divided into sectors as the pattern proposes. In the case of the Singleton pattern, it was used in the Manager because it is more logical to have only one Manager instead of being able to instantiate several.<br/>
+
 ✅ - **Polimorfism**  <br/>
+Methods like OnClick and OnTick have been overridden several times in the program structure to adapt in the most efficient and useful way to each class.<br/>
+
 ✅ - **ArrayList** <br/>
+Used to store Pokémon in the Pokedex and to store the player's team.<br/>
+
 ✅ - **Encapsulation** <br/>
+Used throughout the program to configure the access level of both variables and methods in classes and interfaces, with protected, public, private and sometimes default.<br/>
+
 ✅ - **Interface** <br/>
+Two interfaces were created in the program Command.java and Drawable.java<br/>
+
 ✅ - **Exception** <br/>
+Used to control and warn of errors throughout the program, but more intensively in classes that involve writing and reading files such as Sprite.java, Animation.java and Text.java<br/>
+
 ✅ - **Abstract Class** <br/> 
+Because we used Interface, we also used abstract classes.<br/>
+
 ✅ - **Concurrent programming** <br/>
+Used to configure the computer's play algorithm through Threads<br/>
+
 ✅ - **Serialization** <br/>
+Used in Command.java and Data.java via the Serializable library<br/>
 
 
 # ***Run the Program*** <img src="images/emoji/snorlax.png" width="40" height="40">

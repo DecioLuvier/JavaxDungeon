@@ -34,7 +34,7 @@ package engine
         } 
 
         'Inheritance'
-        Listerner <|-- Actor
+        Listener <|-- Actor
         Drawable <|.. Actor  
 
         'Composition'
@@ -220,7 +220,6 @@ package engine
         # void paintComponent(Graphics graphics) 
     }
 
-    'algo com Random aqui"
     Surface o-- Manager
 
     interface Drawable{
@@ -307,14 +306,14 @@ package game{
             }
 
             'Composition'
-            PartyMenu o-- Battle
-            Actor o-- Battle
-            PokemonInfo o-- Battle
-            MovesMenu o-- Battle
-            ActionMenu o-- Battle
-            ActionTexts o-- Battle
-            Trainer o-- Battle
-            Pokemon o-- Battle
+            PartyMenu *-- Battle
+            Actor *-- Battle
+            PokemonInfo *-- Battle
+            MovesMenu *-- Battle
+            ActionMenu *-- Battle
+            ActionTexts *-- Battle
+            Trainer *-- Battle
+            Pokemon *-- Battle
 
             'Inheritance'
             Surface <|-- Battle
@@ -332,12 +331,12 @@ package game{
             }
 
             'Composition'
-            Actor o-- MovesMenu
-            Button o-- MovesMenu
-            Sprite o-- MovesMenu
-            Text o-- MovesMenu
-            Pokemon o-- MovesMenu
-            Move o-- MovesMenu
+            Actor *-- MovesMenu
+            Button *-- MovesMenu
+            Sprite *-- MovesMenu
+            Text *-- MovesMenu
+            Pokemon *-- MovesMenu
+            Move *-- MovesMenu
 
             'Inheritance'
             Surface <|-- MovesMenu
@@ -354,12 +353,12 @@ package game{
             }
 
             'Composition'
-            Actor o-- PartyMenu
-            Button o-- PartyMenu
-            Sprite o-- PartyMenu
-            Text o-- PartyMenu
-            Pokemon o-- PartyMenu
-            Trainer o-- PartyMenu
+            Actor *-- PartyMenu
+            Button *-- PartyMenu
+            Sprite *-- PartyMenu
+            Text *-- PartyMenu
+            Pokemon *-- PartyMenu
+            Trainer *-- PartyMenu
 
             'Inheritance'
             Surface <|-- PartyMenu
@@ -377,10 +376,10 @@ package game{
             }
 
             'Composition'
-            Actor o-- PokemonInfo
-            Sprite o-- PokemonInfo
-            Text o-- PokemonInfo
-            Pokemon o-- PokemonInfo
+            Actor *-- PokemonInfo
+            Sprite *-- PokemonInfo
+            Text *-- PokemonInfo
+            Pokemon *-- PokemonInfo
 
             'Inheritance'
             Surface <|-- PokemonInfo
@@ -413,7 +412,7 @@ package game{
             Command <|.. SwapCommand
 
             'Composition"
-            Trainer o-- SwapCommand
+            Trainer *-- SwapCommand
 
             class World{
                 - ArrayList<Tile> tiles;
